@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GameLinesEditor
 {
-    public partial class StartWindow : Form
+    public partial class Settings : Form
     {
-        public StartWindow()
+        public Settings()
         {
             InitializeComponent();
         }

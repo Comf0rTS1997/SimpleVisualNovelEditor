@@ -1,6 +1,6 @@
 ﻿namespace GameLinesEditor
 {
-    partial class StartWindow
+    partial class Settings
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // StartWindow
+            // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 393);
-            this.Name = "StartWindow";
-            this.Text = "StartWindow";
+            this.ClientSize = new System.Drawing.Size(1078, 545);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
+            this.Name = "Settings";
+            this.Text = "Settings";
             this.ResumeLayout(false);
 
         }
