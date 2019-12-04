@@ -26,8 +26,9 @@ namespace GameLinesEditor
 
         private void preferenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form Sett = new Settings();
+            Form Sett = new Settings(this);
             Sett.Show();
+            this.Enabled = false;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -35,10 +36,6 @@ namespace GameLinesEditor
             
         }
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-            Environment.Exit(0);
-        }
 
         private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -58,6 +55,11 @@ namespace GameLinesEditor
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

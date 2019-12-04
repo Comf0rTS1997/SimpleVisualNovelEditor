@@ -12,9 +12,22 @@ namespace GameLinesEditor
 {
     public partial class Settings : Form
     {
-        public Settings()
+        private Form mainWindowPointer;
+        public Settings(Form mainWindow)
         {
             InitializeComponent();
+            this.mainWindowPointer = mainWindow;
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void Settings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.mainWindowPointer.Enabled = true;
         }
     }
 }
