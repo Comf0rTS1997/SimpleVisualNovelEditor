@@ -69,5 +69,18 @@ namespace GameLinesEditor
         {
             Application.Exit();
         }
+
+        private void MainWindow_ResizeEnd(object sender, EventArgs e)
+        {
+            resetEditorSize();
+        }
+
+        private void resetEditorSize()
+        {
+            groupBox1.Width = this.Width - groupBox2.Width;
+            groupBox1.Location =new Point( groupBox2.Location.X + groupBox2.Size.Width, 0);
+        }
+
+       
     }
 }
