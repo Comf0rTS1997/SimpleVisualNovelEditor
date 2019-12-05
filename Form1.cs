@@ -47,8 +47,6 @@ namespace GameLinesEditor
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.filePath = openFileDialog1.FileName;
-                richTextBox1.Enabled = true;
-                richTextBox1.Text = System.IO.File.ReadAllText(filePath);
             }
         }
 
