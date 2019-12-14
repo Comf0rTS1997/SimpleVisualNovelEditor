@@ -27,11 +27,12 @@ namespace GameLinesEditor
             try
             {
                 jsonSett = System.IO.File.ReadAllText(SettingFilePath);
-            }catch (Exception ex)
+            }catch 
             {
                 System.IO.Directory.CreateDirectory(this.StartupPath + SETTINGFOLDER);
-                String defaultSetting = "{'Size': 20}";
+                String defaultSetting = "{'Size': 15}";
                 System.IO.File.WriteAllText(SettingFilePath,defaultSetting);
+                
             }
 
             // Parse Json
@@ -45,7 +46,6 @@ namespace GameLinesEditor
         public String getSettingValue(String setting_name)
         {
             String result = null;
-
             return result;
         }
 
