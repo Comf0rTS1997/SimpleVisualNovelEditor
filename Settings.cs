@@ -23,7 +23,7 @@ namespace GameLinesEditor
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Sett_man.settingRecorder.Size.ToString();
+            
         }
 
 
