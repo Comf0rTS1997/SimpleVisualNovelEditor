@@ -9,21 +9,19 @@ namespace GameLinesEditor
     class SceneObj
     {
         public String SceneName;
-        public LinkedList<Dictionary<String, String>> content;
+        public LinkedList<Dictionary<String, Object>> content;
         //public Dictionary<int, String> lineToNodeDic;
-
-        public SceneObj(String nameIn, LinkedList<Dictionary<String, String>> eventListIn, Dictionary<int, String> lineToNodeDicIn)
-        {
-            this.SceneName = nameIn;
-            this.content = eventListIn;
-            //this.lineToNodeDic = lineToNodeDicIn;
-        }
 
         public SceneObj()
         {
             this.SceneName = "";
-            this.content = new LinkedList<Dictionary<string, string>>();
+            this.content = new LinkedList<Dictionary<string, Object>>();
             //this.lineToNodeDic = new Dictionary<int, string>();
+        }
+
+        public void addNode(Dictionary<String, Object> node)
+        {
+            content.AddLast(node);
         }
     }
 }

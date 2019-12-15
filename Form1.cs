@@ -129,7 +129,7 @@ namespace GameLinesEditor
 
         private void saveAsFile() 
         {
-            saveFileDialog1.Filter = "Visual Novel Script(*.plot) | *.plot";
+            saveFileDialog1.Filter = "Visual Novel Script(*.plot)|*.plot";
             saveFileDialog1.FileName = String.Empty;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -176,7 +176,6 @@ namespace GameLinesEditor
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Console.WriteLine(e.KeyChar);
             if(e.KeyChar < 32)
             {
                 e.Handled = true;
@@ -185,7 +184,8 @@ namespace GameLinesEditor
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-
+            String jsonOutput = textAnalizer.ConvertToJson(this.richTextBox1);
+            System.IO.File.WriteAllText(@"C:\Users\comfo\Desktop\debug.txt",jsonOutput);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
