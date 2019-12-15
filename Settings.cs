@@ -13,13 +13,6 @@ namespace GameLinesEditor
     public partial class Settings : Form
     {
         private Form mainWindowPointer;
-        private SettingsManager Sett_man;
-        public Settings(Form mainWindow, SettingsManager settMan)
-        {
-            InitializeComponent();
-            this.mainWindowPointer = mainWindow;
-            this.Sett_man = settMan;
-        }
 
         private void Settings_Load(object sender, EventArgs e)
         {

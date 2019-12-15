@@ -14,24 +14,18 @@ namespace GameLinesEditor
 {
     public partial class MainWindow : Form
     {
-        private SettingsManager Sett_Man;
         private String filePath; // path of the file that is currently working on
 
         private String zoomConfig = Application.StartupPath + @"\" + "Zoom"; // file that save zoom number
         
         private const bool DEBUGMODE = false;// debug mode switch
 
-        private SceneObj sceneMan;
 
         private const String SOFTWARENAME = " -VisualNovelEditor";
 
         public MainWindow()
         {
             InitializeComponent();
-            this.Sett_Man = new SettingsManager(Application.StartupPath);
-            richTextBox1.Font = new Font("Tahoma", Sett_Man.settingRecorder.Size, FontStyle.Bold);
-            // init scene obj
-            this.sceneMan = new SceneObj();
             // init scintilla
             this.richTextBox1.Margins[0].Width = 30;
             int zoom = 1;
@@ -50,13 +44,6 @@ namespace GameLinesEditor
                 toolStripSeparator3.Visible = true;
                 debugToolStripMenuItem.Visible = true;
             }
-        }
-
-        private void preferenceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form Sett = new Settings(this,Sett_Man);
-            Sett.Show();
-            this.Enabled = false;
         }
 
 
@@ -197,6 +184,11 @@ namespace GameLinesEditor
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
 
         }
