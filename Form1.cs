@@ -26,7 +26,7 @@ namespace GameLinesEditor
         private const String SOFTWARENAME = " -VisualNovelEditor";
         public Scintilla richTextBox1Pointer;
         public TreeView treeView1Pointer;
-        private int maxLineNumberCharLength;
+        private int maxLineNumberCharLength = 1;
 
         public MainWindow()
         {
@@ -37,7 +37,7 @@ namespace GameLinesEditor
             this.richTextBox1.Margins[0].Width = 30;
             // Set the second margin as spliter between line number and actual text
             this.richTextBox1.Margins[1].Type = MarginType.ForeColor;
-            this.richTextBox1.Styles[Style.Default].ForeColor = Color.Black;
+            this.richTextBox1.Styles[Style.Default].ForeColor = Color.White;
             this.richTextBox1.Margins[1].Width = 1;
             
             int zoom = 1;
