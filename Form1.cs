@@ -42,7 +42,6 @@ namespace GameLinesEditor
                 richTextBox1.Zoom = zoom;
             }
             catch { }
-            richTextBox1.ClearCmdKey(Keys.Control | Keys.S);
             // debug mode
             if (DEBUGMODE)
             {
@@ -105,8 +104,6 @@ namespace GameLinesEditor
         private void processLine(int lineNumber)
         {
            
-            
-
         }
 
         // shortcut keys
@@ -118,6 +115,7 @@ namespace GameLinesEditor
                 {
                     case Keys.O:
                         openFile();
+
                         break;
                     case Keys.S:
                         saveFile();
@@ -126,8 +124,7 @@ namespace GameLinesEditor
                         richTextBox1.Zoom = 1;
                         break;
                 }
-                e.SuppressKeyPress = true;
-                e.Handled = true;
+                
             }
         }
 
@@ -151,6 +148,7 @@ namespace GameLinesEditor
             {
                 this.filePath = saveFileDialog1.FileName;
                 System.IO.File.WriteAllText(this.filePath, richTextBox1.Text);
+                this.Text = this.filePath + SOFTWARENAME;
             }
         }
 
@@ -191,10 +189,16 @@ namespace GameLinesEditor
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Console.WriteLine(e.KeyChar);
             if(e.KeyChar < 32)
             {
                 e.Handled = true;
             }
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
