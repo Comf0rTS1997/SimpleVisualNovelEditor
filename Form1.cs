@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ScintillaNET;
 using System.IO;
 
 
@@ -20,22 +21,36 @@ namespace GameLinesEditor
         
         private const bool DEBUGMODE = false;// debug mode switch
 
+        public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
         private const String SOFTWARENAME = " -VisualNovelEditor";
+        public Scintilla richTextBox1Pointer;
+        public TreeView treeView1Pointer;
+        private int maxLineNumberCharLength;
 
         public MainWindow()
         {
             InitializeComponent();
             // init scintilla
+            this.richTextBox1.Margins[0].Type = MarginType.Number;
+            // Set line width
             this.richTextBox1.Margins[0].Width = 30;
+            // Set the second margin as spliter between line number and actual text
+            this.richTextBox1.Margins[1].Type = MarginType.ForeColor;
+            this.richTextBox1.Styles[Style.Default].ForeColor = Color.Black;
+            this.richTextBox1.Margins[1].Width = 1;
+            
             int zoom = 1;
             try
             {
                 String zoomNumberInString = System.IO.File.ReadAllText(zoomConfig);
+
                 Int32.TryParse(zoomNumberInString, out zoom);
                 richTextBox1.Zoom = zoom;
             }
             catch { }
+            this.richTextBox1Pointer = richTextBox1;
+            this.treeView1Pointer = this.treeView1;
             // debug mode
             if (DEBUGMODE)
             {
@@ -129,7 +144,9 @@ namespace GameLinesEditor
 
         private void saveAsFile() 
         {
-            saveFileDialog1.Filter = "Visual Novel Script(*.plot) | *.plot";
+            saveFileDialog1.Filter = "Visual Novel Script(*.plot) | *.plot" +
+                "| Shitty FileExtension(*.shit) | *.shit" +
+                "| Ahaaaaaaaa~~~~~~Aaaaaaaaaaa(*.hentai) | *.hentai";
             saveFileDialog1.FileName = String.Empty;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -141,7 +158,9 @@ namespace GameLinesEditor
 
         private void openFile()
         {
-            openFileDialog1.Filter = "Visual Novel Script(*.plot) | *.plot";
+            openFileDialog1.Filter = "Visual Novel Script(*.plot) | *.plot" +
+                "| Shitty FileExtension(*.shit) | *.shit" +
+                "| Ahaaaaaaaa~~~~~~Aaaaaaaaaaa(*.hentai) | *.hentai";
             openFileDialog1.FileName = String.Empty;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -157,7 +176,6 @@ namespace GameLinesEditor
             int zoomSize = richTextBox1.Zoom;
             try
             {
-                System.IO.File.Delete(zoomConfig);
                 System.IO.File.WriteAllText(zoomConfig, "" + zoomSize);
             }
             catch { }
@@ -191,6 +209,27 @@ namespace GameLinesEditor
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void preferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form preference = new Settings(this);
+            this.Enabled = false;
+            preference.Show();
+        }
+
+        private void richTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e) {       
+
+            var maxLineNumberCharLength = richTextBox1.Lines.Count.ToString().Length;
+            if (maxLineNumberCharLength == this.maxLineNumberCharLength)
+                return;
+            richTextBox1.Margins[0].Width = richTextBox1.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + 3;
+            this.maxLineNumberCharLength = maxLineNumberCharLength;
         }
     }
 }
