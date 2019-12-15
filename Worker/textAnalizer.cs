@@ -100,8 +100,8 @@ namespace GameLinesEditor
                 node.Enqueue(temp);
             }
             String functionName = firstLineComponent[0];
-            functionName.Remove(0);
-            functionName.ToUpper();
+            functionName = functionName.Remove(0,1);
+            functionName = functionName.ToUpper();
             Dictionary<String, Object> newNode = new Dictionary<string, object>();
             newNode.Add("type", "Function");
             newNode.Add("functionName",functionName);
