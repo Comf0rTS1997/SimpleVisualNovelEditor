@@ -80,6 +80,13 @@ namespace GameLinesEditor
         }
         private static void conversationHandlerHelper(String character, string text, SceneObj sceneMan) 
         {
+            // trim given text
+            char[] trimChar = { '@', ' ' };
+            character = character.Trim(trimChar);
+            text = text.Trim(trimChar);
+            character = character.Replace(Environment.NewLine, String.Empty);
+            text = text.Replace(Environment.NewLine, String.Empty);
+            //
             Dictionary<String, Object> newNode = new Dictionary<string, Object>();
             newNode.Add("type", "Conversation"); // the type of the node
             newNode.Add("Name", character); // add character name   
@@ -102,43 +109,71 @@ namespace GameLinesEditor
             String functionName = firstLineComponent[0];
             functionName = functionName.Remove(0,1);
             functionName = functionName.ToUpper();
+            functionName = functionName.Trim();
             Dictionary<String, Object> newNode = new Dictionary<string, object>();
             newNode.Add("type", "Function");
             newNode.Add("functionName",functionName);
+            // analize this node
             switch (functionName)
             {
                 case "BGM":
-                    newNode.Add(functionName,node.Dequeue());
+                    newNode.Add(functionName,node.Dequeue().Trim());
                     break;
                 case "SOUND":
-                    newNode.Add(functionName, node.Dequeue());
+                    newNode.Add(functionName, node.Dequeue().Trim());
                     break;
                 case "ANIMATION":
-                    newNode.Add(functionName, node.Dequeue());
+                    newNode.Add(functionName, node.Dequeue().Trim());
                     break;
                 case "GAME":
-                    newNode.Add(functionName, node.Dequeue());
+                    newNode.Add(functionName, node.Dequeue().Trim());
                     break;
                 case "SWITCH":
                     Dictionary<String, String> switchDic = new Dictionary<string, string>();
-                    foreach (String pointingLine in node)
+                    while (node.Count > 0)
                     {
-                        String[] pointingLineComponent = node.Dequeue().Split(Sperator);
-                        switchDic.Add(pointingLineComponent[0],pointingLineComponent[1]);
+                        String pointingLine = node.Dequeue();
+                        String[] pointingLineComponent = pointingLine.Split(Sperator);
+                        // trim and add parameters
+                        char[] trimChar = { '#', ' ' };
+                        try
+                        {
+                            String parName = pointingLineComponent[0].Trim(trimChar).Replace(Environment.NewLine, String.Empty);
+                            String parValue = pointingLineComponent[1].Trim(trimChar).Replace(Environment.NewLine, String.Empty);
+                            switchDic.Add(parName, parValue);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Bad Parameter");
+                        }
                     }
-                    newNode.Add("Case", switchDic);
+                    newNode.Add("SWITCH", switchDic);
                     break;
                 case "OPTION":
                     Dictionary<String, String> optionDic = new Dictionary<string, string>();
-                    foreach (String pointingLine in node)
+                    while (node.Count > 0)
                     {
-                        String[] pointingLineComponent = node.Dequeue().Split(Sperator);
-                        optionDic.Add(pointingLineComponent[0], pointingLineComponent[1]);
+                        String pointingLine = node.Dequeue();
+                        String[] pointingLineComponent = pointingLine.Split(Sperator);
+                        // trim and add parameters
+                        char[] trimChar = { '#', ' ' };
+                        //
+                        try
+                        {
+                            String parName = pointingLineComponent[0].Trim(trimChar).Replace(Environment.NewLine, String.Empty);
+                            String parValue = pointingLineComponent[1].Trim(trimChar).Replace(Environment.NewLine, String.Empty);
+                            optionDic.Add(parName, parValue);
+                        }
+                        catch 
+                        {
+                            Console.WriteLine("Bad Parameter");
+                        }
+                        
                     }
-                    newNode.Add("Option", optionDic);
+                    newNode.Add("OPTION", optionDic);
                     break;
                 case "UPDATE":
-                    newNode.Add("Update", node.Dequeue());
+                    newNode.Add("UPDATE", node.Dequeue().Trim());
                     break;
                 default:
                     Console.WriteLine("Illegal function:" + functionName);
