@@ -159,10 +159,10 @@
             // 
             // preferenceToolStripMenuItem
             // 
-            this.preferenceToolStripMenuItem.Enabled = false;
             this.preferenceToolStripMenuItem.Name = "preferenceToolStripMenuItem";
             this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.preferenceToolStripMenuItem.Text = "Preference";
+            this.preferenceToolStripMenuItem.Click += new System.EventHandler(this.preferenceToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -223,10 +223,12 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Lexer = ScintillaNET.Lexer.Null;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(740, 512);
+            this.richTextBox1.Size = new System.Drawing.Size(668, 512);
             this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             this.richTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBox1_KeyPress);
             // 
             // statusStrip1
@@ -252,7 +254,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(124, 512);
+            this.treeView1.Size = new System.Drawing.Size(196, 512);
             this.treeView1.TabIndex = 6;
             // 
             // splitContainer1
@@ -271,7 +273,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(868, 512);
-            this.splitContainer1.SplitterDistance = 124;
+            this.splitContainer1.SplitterDistance = 196;
             this.splitContainer1.TabIndex = 7;
             // 
             // MainWindow
@@ -314,7 +316,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem preferenceToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
@@ -332,6 +333,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem preferenceToolStripMenuItem;
     }
 }
 
