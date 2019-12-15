@@ -15,10 +15,13 @@ namespace GameLinesEditor
     {
         private MainWindow mainWindowPointer;
         private string currentSettings;
+        private Color defaultLineFieldColor;
         public Settings(MainWindow mainWindowPointer) {
             InitializeComponent();
             this.mainWindowPointer = mainWindowPointer;
             this.currentSettings = this.mainWindowPointer.currentSettings;
+            defaultLineFieldColor = this.mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor;
+
 
         }
         private void Settings_Load(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace GameLinesEditor
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].BackColor = Color.White;
                     mainWindowPointer.treeView1Pointer.BackColor = Color.White;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].ForeColor = Color.Black;
-                    mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = Color.White;
+                    mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = defaultLineFieldColor;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.Black;
                     break;
                 case "DARK MODE":
