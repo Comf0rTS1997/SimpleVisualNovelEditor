@@ -15,13 +15,13 @@ namespace GameLinesEditor
     {
         private MainWindow mainWindowPointer;
         private string currentSettings;
-        private Color defaultLineFieldColor;
+        private Color defaultLineFieldColor = Color.FromArgb(0XF0, 0xF0, 0xF0);
         public Settings(MainWindow mainWindowPointer) {
             InitializeComponent();
             this.mainWindowPointer = mainWindowPointer;
             this.currentSettings = this.mainWindowPointer.currentSettings;
-            defaultLineFieldColor = this.mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor;
-
+            //defaultLineFieldColor = this.mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor;
+            //MessageBox.Show("#" + defaultLineFieldColor.R.ToString("X2") + defaultLineFieldColor.G.ToString("X2") + defaultLineFieldColor.B.ToString("X2"));
 
         }
         private void Settings_Load(object sender, EventArgs e)
@@ -50,21 +50,21 @@ namespace GameLinesEditor
                     mainWindowPointer.treeView1Pointer.BackColor = Color.White;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].ForeColor = Color.Black;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = defaultLineFieldColor;
-                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.Black;
+                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.White;
                     break;
                 case "DARK MODE":
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].BackColor = Color.Black;
                     mainWindowPointer.treeView1Pointer.BackColor = Color.Black;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].ForeColor = Color.White;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = Color.Black;
-                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.White;
+                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.Gray;
                     break;
                 case "KIMOCHI MODE":
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].BackColor = Color.FromArgb(0xb5, 0xdb, 0xff);
                     mainWindowPointer.treeView1Pointer.BackColor = Color.FromArgb(0xb5, 0xdb, 0xff);
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].ForeColor = Color.Black;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = Color.FromArgb(0xb5, 0xdb, 0xff);
-                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.White;
+                    mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.LightYellow;
                     break;
             }
         }
