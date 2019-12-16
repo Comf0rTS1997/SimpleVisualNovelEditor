@@ -218,7 +218,7 @@ namespace GameLinesEditor
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-
+            //this.tabControl1.TabPages.Add();
         }
 
         private void preferenceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -257,5 +257,9 @@ namespace GameLinesEditor
             this.toolBoxSpliter.SplitterDistance = TOOLBOXWIDTH;
         }
 
+        private void MainWindow_DragDrop(object sender, DragEventArgs e)
+        {
+            // String openPath = e.Data();
+        }
     }
 }

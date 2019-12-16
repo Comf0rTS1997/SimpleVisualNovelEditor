@@ -67,6 +67,7 @@ namespace GameLinesEditor
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.LightYellow;
                     break;
             }
+            this.Close();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
