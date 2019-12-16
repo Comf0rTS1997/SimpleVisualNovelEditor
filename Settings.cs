@@ -47,7 +47,7 @@ namespace GameLinesEditor
             {
                 case "DEFAULT":
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].BackColor = Color.White;
-                    mainWindowPointer.treeView1Pointer.BackColor = Color.White;
+                    mainWindowPointer.treeView1Pointer.BackColor = Color.Silver;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].ForeColor = Color.Black;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.LineNumber].BackColor = defaultLineFieldColor;
                     mainWindowPointer.richTextBox1Pointer.Styles[Style.Default].ForeColor = Color.White;

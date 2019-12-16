@@ -27,7 +27,7 @@ namespace GameLinesEditor
         public Scintilla richTextBox1Pointer;
         public TreeView treeView1Pointer;
         private int maxLineNumberCharLength = 1;
-        private const int TOOLBOXWIDTHCONST = 30;
+        private const int TOOLBOXWIDTHCONST = 25;
         private int TOOLBOXWIDTH;
 
         public MainWindow()
@@ -244,7 +244,7 @@ namespace GameLinesEditor
 
         private void explorerSwitch_Click(object sender, EventArgs e)
         {
-            this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
+            this.WorkingAreaSplitContainer.Panel1Collapsed = !this.WorkingAreaSplitContainer.Panel1Collapsed;
         }
 
         private void MainWindow_Resize(object sender, EventArgs e)
@@ -255,7 +255,7 @@ namespace GameLinesEditor
         private void resizeToolBoxSpliter()
         {
             this.toolBoxSpliter.SplitterDistance = TOOLBOXWIDTH;
-            this.LeftToolContent.SplitterDistance = 16;
         }
+
     }
 }
