@@ -27,6 +27,8 @@ namespace GameLinesEditor
         public Scintilla richTextBox1Pointer;
         public TreeView treeView1Pointer;
         private int maxLineNumberCharLength = 1;
+        private const int TOOLBOXWIDTHCONST = 30;
+        private int TOOLBOXWIDTH;
 
         public MainWindow()
         {
@@ -39,7 +41,10 @@ namespace GameLinesEditor
             this.richTextBox1.Margins[1].Type = MarginType.ForeColor;
             this.richTextBox1.Styles[Style.Default].ForeColor = Color.White;
             this.richTextBox1.Margins[1].Width = 1;
-            
+            // set toolbox width
+            TOOLBOXWIDTH = this.Width / TOOLBOXWIDTHCONST;
+            resizeToolBoxSpliter();
+
             int zoom = 1;
             try
             {
@@ -115,13 +120,6 @@ namespace GameLinesEditor
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.O:
-                        openFile();
-
-                        break;
-                    case Keys.S:
-                        saveFile();
-                        break;
                     case Keys.D0:
                         richTextBox1.Zoom = 1;
                         break;
@@ -202,8 +200,20 @@ namespace GameLinesEditor
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            String jsonOutput = textAnalizer.ConvertToJson(this.richTextBox1);
-            System.IO.File.WriteAllText(@"C:\Users\comfo\Desktop\debug.txt",jsonOutput);
+            this.toolStripStatusLabel1.Text = "Procesing"; // change status bar text
+            exportFile(this.richTextBox1);            
+            this.toolStripStatusLabel1.Text = "Ready"; // Change back status bar text
+        }
+
+        private void exportFile(Scintilla input)
+        {
+            String jsonOutput = textAnalizer.ConvertToJson(input);
+            this.exportFileDialog.Filter = "Processed Visual Novel script file | *.json";
+            this.exportFileDialog.FileName = "";
+            if (exportFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(exportFileDialog.FileName, jsonOutput);
+            }
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -230,6 +240,21 @@ namespace GameLinesEditor
                 return;
             richTextBox1.Margins[0].Width = richTextBox1.TextWidth(Style.LineNumber, new string('9', maxLineNumberCharLength + 1)) + 3;
             this.maxLineNumberCharLength = maxLineNumberCharLength;
+        }
+
+        private void explorerSwitch_Click(object sender, EventArgs e)
+        {
+            this.splitContainer1.Panel1Collapsed = !this.splitContainer1.Panel1Collapsed;
+        }
+
+        private void MainWindow_Resize(object sender, EventArgs e)
+        {
+            resizeToolBoxSpliter();
+        }
+
+        private void resizeToolBoxSpliter()
+        {
+            this.toolBoxSpliter.SplitterDistance = TOOLBOXWIDTH;
         }
     }
 }
