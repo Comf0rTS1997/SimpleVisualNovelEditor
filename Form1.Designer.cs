@@ -279,7 +279,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(219, 533);
+            this.treeView1.Size = new System.Drawing.Size(150, 533);
             this.treeView1.TabIndex = 6;
             // 
             // splitContainer1
@@ -299,7 +299,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(989, 533);
-            this.splitContainer1.SplitterDistance = 219;
+            this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 7;
             // 
             // explorerSwitch
