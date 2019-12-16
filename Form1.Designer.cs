@@ -61,6 +61,8 @@
             this.explorerSwitch = new System.Windows.Forms.Button();
             this.toolBoxSpliter = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.LeftToolContent = new System.Windows.Forms.SplitContainer();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -71,6 +73,10 @@
             this.toolBoxSpliter.Panel1.SuspendLayout();
             this.toolBoxSpliter.Panel2.SuspendLayout();
             this.toolBoxSpliter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LeftToolContent)).BeginInit();
+            this.LeftToolContent.Panel1.SuspendLayout();
+            this.LeftToolContent.Panel2.SuspendLayout();
+            this.LeftToolContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -181,7 +187,7 @@
             // 
             this.preferenceToolStripMenuItem.Name = "preferenceToolStripMenuItem";
             this.preferenceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.preferenceToolStripMenuItem.Text = "Preference";
             this.preferenceToolStripMenuItem.Click += new System.EventHandler(this.preferenceToolStripMenuItem_Click);
             // 
@@ -249,7 +255,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ScrollWidth = 1;
-            this.richTextBox1.Size = new System.Drawing.Size(989, 533);
+            this.richTextBox1.Size = new System.Drawing.Size(835, 533);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
@@ -279,7 +285,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(150, 533);
+            this.treeView1.Size = new System.Drawing.Size(150, 514);
             this.treeView1.TabIndex = 6;
             // 
             // splitContainer1
@@ -292,8 +298,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
-            this.splitContainer1.Panel1Collapsed = true;
+            this.splitContainer1.Panel1.Controls.Add(this.LeftToolContent);
             // 
             // splitContainer1.Panel2
             // 
@@ -305,6 +310,7 @@
             // explorerSwitch
             // 
             this.explorerSwitch.AccessibleDescription = "Project Explorer";
+            this.explorerSwitch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.explorerSwitch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("explorerSwitch.BackgroundImage")));
             this.explorerSwitch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.explorerSwitch.Dock = System.Windows.Forms.DockStyle.Top;
@@ -315,8 +321,8 @@
             this.explorerSwitch.Padding = new System.Windows.Forms.Padding(5);
             this.explorerSwitch.Size = new System.Drawing.Size(22, 36);
             this.explorerSwitch.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.explorerSwitch, "Project Explorer");
-            this.explorerSwitch.UseVisualStyleBackColor = true;
+            this.toolTip1.SetToolTip(this.explorerSwitch, "Toogle Project Explorer");
+            this.explorerSwitch.UseVisualStyleBackColor = false;
             this.explorerSwitch.Click += new System.EventHandler(this.explorerSwitch_Click);
             // 
             // toolBoxSpliter
@@ -331,6 +337,7 @@
             this.toolBoxSpliter.Panel1.Controls.Add(this.explorerSwitch);
             this.toolBoxSpliter.Panel1.Margin = new System.Windows.Forms.Padding(5);
             this.toolBoxSpliter.Panel1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.toolTip1.SetToolTip(this.toolBoxSpliter.Panel1, "ToolBox");
             // 
             // toolBoxSpliter.Panel2
             // 
@@ -340,6 +347,44 @@
             this.toolBoxSpliter.SplitterWidth = 1;
             this.toolBoxSpliter.TabIndex = 8;
             this.toolBoxSpliter.TabStop = false;
+            // 
+            // LeftToolContent
+            // 
+            this.LeftToolContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftToolContent.IsSplitterFixed = true;
+            this.LeftToolContent.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolContent.Margin = new System.Windows.Forms.Padding(0);
+            this.LeftToolContent.Name = "LeftToolContent";
+            this.LeftToolContent.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // LeftToolContent.Panel1
+            // 
+            this.LeftToolContent.Panel1.Controls.Add(this.textBox1);
+            this.LeftToolContent.Panel1MinSize = 0;
+            // 
+            // LeftToolContent.Panel2
+            // 
+            this.LeftToolContent.Panel2.Controls.Add(this.treeView1);
+            this.LeftToolContent.Size = new System.Drawing.Size(150, 533);
+            this.LeftToolContent.SplitterDistance = 15;
+            this.LeftToolContent.TabIndex = 0;
+            this.LeftToolContent.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(150, 15);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "Project Explorer";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainWindow
             // 
@@ -355,7 +400,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New File -VisualNovelEditor";
+            this.Text = "New File -SimpleVisualNovelEditor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.Resize += new System.EventHandler(this.MainWindow_Resize);
@@ -371,6 +416,11 @@
             this.toolBoxSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolBoxSpliter)).EndInit();
             this.toolBoxSpliter.ResumeLayout(false);
+            this.LeftToolContent.Panel1.ResumeLayout(false);
+            this.LeftToolContent.Panel1.PerformLayout();
+            this.LeftToolContent.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LeftToolContent)).EndInit();
+            this.LeftToolContent.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,6 +459,8 @@
         private System.Windows.Forms.Button explorerSwitch;
         private System.Windows.Forms.SplitContainer toolBoxSpliter;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.SplitContainer LeftToolContent;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

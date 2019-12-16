@@ -23,7 +23,7 @@ namespace GameLinesEditor
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
-        private const String SOFTWARENAME = " -VisualNovelEditor";
+        private const String SOFTWARENAME = " -SimpleVisualNovelEditor";
         public Scintilla richTextBox1Pointer;
         public TreeView treeView1Pointer;
         private int maxLineNumberCharLength = 1;
@@ -255,6 +255,7 @@ namespace GameLinesEditor
         private void resizeToolBoxSpliter()
         {
             this.toolBoxSpliter.SplitterDistance = TOOLBOXWIDTH;
+            this.LeftToolContent.SplitterDistance = 16;
         }
     }
 }
