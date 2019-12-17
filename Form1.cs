@@ -203,7 +203,7 @@ namespace GameLinesEditor
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             String jsonOutput = textAnalizer.ConvertToJson(this.richTextBox1);
-            System.IO.File.WriteAllText(@"C:\Users\comfo\Desktop\debug.txt",jsonOutput);
+            System.IO.File.WriteAllText(@"C:\Users\pguan\debug.txt",jsonOutput);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
