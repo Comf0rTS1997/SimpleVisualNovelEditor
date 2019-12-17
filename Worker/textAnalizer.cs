@@ -13,18 +13,20 @@ namespace GameLinesEditor
     // used when saving file
     class textAnalizer
     {
-        const String ALLIDENTIFIER = "#@";
+        const String ALLIDENTIFIER = "#@/";
 
         public static String ConvertToJson(Scintilla textBox)
         {
-            Console.WriteLine("Start converting");
             textBox.ReadOnly = true; // User will not able to change text when processing
             SceneObj sceneMan = new SceneObj();
             int lineCount = textBox.Lines.Count;
             Console.WriteLine("Total Line:" + lineCount);
             for (int i = 0; i < lineCount; i++)
             {
-                Console.WriteLine("Processing line:" + i);
+                if (textBox.Lines[i].Text.Trim() == String.Empty)
+                {
+                    break;
+                }
                 Queue<String> node = new Queue<string>();
                 String nodeFirstLine = textBox.Lines[i].Text;
                 node.Enqueue(nodeFirstLine);
@@ -33,18 +35,24 @@ namespace GameLinesEditor
                 while (pointer < lineCount && !foundEndOfNode)
                 {
                     String currentLine = textBox.Lines[pointer].Text;
-                    char currentLineIdentifier = currentLine[0];
+                    char currentLineIdentifier = '/';
+                    try
+                    {
+                        currentLineIdentifier = currentLine[0];
+                    }
+                    catch
+                    {
+
+                    }
+
                     // if next line does not contain an identifier, add it to node
                     if (!ALLIDENTIFIER.Contains(currentLineIdentifier))
                     {
-                        Console.WriteLine("     Not Node:" + pointer + " Enqueue:" + currentLine);
                         node.Enqueue(currentLine);
                         pointer++;
                     }
                     else // finished processing this node
                     {
-                        Console.WriteLine("End of node: " + (pointer -1));
-                        Console.WriteLine("Pointer: " + pointer);
                         i = pointer - 1;
                         foundEndOfNode = true;
                     } 
