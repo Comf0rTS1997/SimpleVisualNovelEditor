@@ -40,12 +40,16 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.addNewPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plotManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exportProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.preferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.teamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,28 +61,36 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.WorkingAreaSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.workingAreaTabControl = new System.Windows.Forms.TabControl();
             this.autoSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.explorerSwitch = new System.Windows.Forms.Button();
             this.toolBoxSpliter = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.teamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.titleBarLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.MaximizeButton = new System.Windows.Forms.Button();
+            this.MinimizeButton = new System.Windows.Forms.Button();
+            this.windowLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WorkingAreaSplitContainer)).BeginInit();
             this.WorkingAreaSplitContainer.Panel1.SuspendLayout();
             this.WorkingAreaSplitContainer.Panel2.SuspendLayout();
             this.WorkingAreaSplitContainer.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolBoxSpliter)).BeginInit();
             this.toolBoxSpliter.Panel1.SuspendLayout();
             this.toolBoxSpliter.Panel2.SuspendLayout();
             this.toolBoxSpliter.SuspendLayout();
+            this.titleBarLayoutPanel.SuspendLayout();
+            this.windowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.DarkGray;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -86,10 +98,11 @@
             this.toolStripMenuItem1,
             this.teamToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 6);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(897, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(206, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -164,6 +177,8 @@
             // ProjectStripMenuItem
             // 
             this.ProjectStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectSettingsToolStripMenuItem,
+            this.toolStripSeparator5,
             this.addNewPlotToolStripMenuItem,
             this.plotManagerToolStripMenuItem,
             this.toolStripSeparator1,
@@ -173,6 +188,18 @@
             this.ProjectStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             this.ProjectStripMenuItem.Size = new System.Drawing.Size(56, 22);
             this.ProjectStripMenuItem.Text = "&Project";
+            // 
+            // projectSettingsToolStripMenuItem
+            // 
+            this.projectSettingsToolStripMenuItem.Name = "projectSettingsToolStripMenuItem";
+            this.projectSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.projectSettingsToolStripMenuItem.Text = "Project Properties";
+            this.projectSettingsToolStripMenuItem.Click += new System.EventHandler(this.projectSettingsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(219, 6);
             // 
             // addNewPlotToolStripMenuItem
             // 
@@ -198,26 +225,43 @@
             // exportProjectToolStripMenuItem
             // 
             this.exportProjectToolStripMenuItem.Name = "exportProjectToolStripMenuItem";
-            this.exportProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.exportProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.exportProjectToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.exportProjectToolStripMenuItem.Text = "Export Project";
+            this.exportProjectToolStripMenuItem.Text = "Build Project";
             this.exportProjectToolStripMenuItem.Click += new System.EventHandler(this.exportProjectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preferenceToolStripMenuItem});
+            this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 22);
             this.toolStripMenuItem1.Text = "&Settings";
+            this.toolStripMenuItem1.Visible = false;
             // 
             // preferenceToolStripMenuItem
             // 
             this.preferenceToolStripMenuItem.Name = "preferenceToolStripMenuItem";
-            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.preferenceToolStripMenuItem.Text = "Preference";
             this.preferenceToolStripMenuItem.Click += new System.EventHandler(this.preferenceToolStripMenuItem_Click);
+            // 
+            // teamToolStripMenuItem
+            // 
+            this.teamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gitToolStripMenuItem});
+            this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
+            this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
+            this.teamToolStripMenuItem.Text = "&Team";
+            this.teamToolStripMenuItem.Visible = false;
+            // 
+            // gitToolStripMenuItem
+            // 
+            this.gitToolStripMenuItem.Name = "gitToolStripMenuItem";
+            this.gitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitToolStripMenuItem.Text = "Git";
             // 
             // helpToolStripMenuItem
             // 
@@ -314,18 +358,33 @@
             // 
             // WorkingAreaSplitContainer.Panel2
             // 
-            this.WorkingAreaSplitContainer.Panel2.Controls.Add(this.workingAreaTabControl);
-            this.WorkingAreaSplitContainer.Size = new System.Drawing.Size(865, 476);
+            this.WorkingAreaSplitContainer.Panel2.Controls.Add(this.tableLayoutPanel1);
+            this.WorkingAreaSplitContainer.Size = new System.Drawing.Size(860, 464);
             this.WorkingAreaSplitContainer.SplitterDistance = 100;
             this.WorkingAreaSplitContainer.TabIndex = 7;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.workingAreaTabControl, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(860, 464);
+            this.tableLayoutPanel1.TabIndex = 7;
             // 
             // workingAreaTabControl
             // 
             this.workingAreaTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workingAreaTabControl.Location = new System.Drawing.Point(0, 0);
+            this.workingAreaTabControl.Location = new System.Drawing.Point(3, 3);
+            this.workingAreaTabControl.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
             this.workingAreaTabControl.Name = "workingAreaTabControl";
             this.workingAreaTabControl.SelectedIndex = 0;
-            this.workingAreaTabControl.Size = new System.Drawing.Size(865, 476);
+            this.workingAreaTabControl.Size = new System.Drawing.Size(852, 458);
             this.workingAreaTabControl.TabIndex = 6;
             this.workingAreaTabControl.Visible = false;
             this.workingAreaTabControl.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.workingAreaTabControl_ControlAdded);
@@ -342,7 +401,7 @@
             this.explorerSwitch.Location = new System.Drawing.Point(4, 3);
             this.explorerSwitch.Name = "explorerSwitch";
             this.explorerSwitch.Padding = new System.Windows.Forms.Padding(5);
-            this.explorerSwitch.Size = new System.Drawing.Size(23, 37);
+            this.explorerSwitch.Size = new System.Drawing.Size(22, 37);
             this.explorerSwitch.TabIndex = 0;
             this.explorerSwitch.TabStop = false;
             this.toolTip1.SetToolTip(this.explorerSwitch, "Toogle Project Explorer (Ctrl + 1)");
@@ -355,7 +414,7 @@
             this.toolBoxSpliter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolBoxSpliter.Enabled = false;
             this.toolBoxSpliter.IsSplitterFixed = true;
-            this.toolBoxSpliter.Location = new System.Drawing.Point(0, 24);
+            this.toolBoxSpliter.Location = new System.Drawing.Point(3, 33);
             this.toolBoxSpliter.Name = "toolBoxSpliter";
             // 
             // toolBoxSpliter.Panel1
@@ -369,38 +428,107 @@
             // toolBoxSpliter.Panel2
             // 
             this.toolBoxSpliter.Panel2.Controls.Add(this.WorkingAreaSplitContainer);
-            this.toolBoxSpliter.Size = new System.Drawing.Size(897, 476);
-            this.toolBoxSpliter.SplitterDistance = 31;
+            this.toolBoxSpliter.Size = new System.Drawing.Size(891, 464);
+            this.toolBoxSpliter.SplitterDistance = 30;
             this.toolBoxSpliter.SplitterWidth = 1;
             this.toolBoxSpliter.TabIndex = 8;
             this.toolBoxSpliter.TabStop = false;
             // 
-            // teamToolStripMenuItem
+            // button1
             // 
-            this.teamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gitToolStripMenuItem});
-            this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
-            this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
-            this.teamToolStripMenuItem.Text = "&Team";
-            this.teamToolStripMenuItem.Visible = false;
+            this.button1.BackColor = System.Drawing.Color.DarkGray;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(846, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 30);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "X";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // gitToolStripMenuItem
+            // titleBarLayoutPanel
             // 
-            this.gitToolStripMenuItem.Name = "gitToolStripMenuItem";
-            this.gitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gitToolStripMenuItem.Text = "Git";
+            this.titleBarLayoutPanel.ColumnCount = 5;
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.61394F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.38606F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.titleBarLayoutPanel.Controls.Add(this.menuStrip1, 0, 0);
+            this.titleBarLayoutPanel.Controls.Add(this.button1, 4, 0);
+            this.titleBarLayoutPanel.Controls.Add(this.MaximizeButton, 3, 0);
+            this.titleBarLayoutPanel.Controls.Add(this.MinimizeButton, 2, 0);
+            this.titleBarLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.titleBarLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.titleBarLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.titleBarLayoutPanel.Name = "titleBarLayoutPanel";
+            this.titleBarLayoutPanel.RowCount = 1;
+            this.titleBarLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.titleBarLayoutPanel.Size = new System.Drawing.Size(897, 30);
+            this.titleBarLayoutPanel.TabIndex = 8;
+            this.titleBarLayoutPanel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.titleBarLayoutPanel_MouseDoubleClick);
+            this.titleBarLayoutPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.titleBarLayoutPanel_MouseDown);
+            this.titleBarLayoutPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.titleBarLayoutPanel_MouseMove);
+            this.titleBarLayoutPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.titleBarLayoutPanel_MouseUp);
+            // 
+            // MaximizeButton
+            // 
+            this.MaximizeButton.BackColor = System.Drawing.Color.DarkGray;
+            this.MaximizeButton.FlatAppearance.BorderSize = 0;
+            this.MaximizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MaximizeButton.Location = new System.Drawing.Point(796, 0);
+            this.MaximizeButton.Margin = new System.Windows.Forms.Padding(0);
+            this.MaximizeButton.Name = "MaximizeButton";
+            this.MaximizeButton.Size = new System.Drawing.Size(50, 30);
+            this.MaximizeButton.TabIndex = 3;
+            this.MaximizeButton.Text = "M";
+            this.MaximizeButton.UseVisualStyleBackColor = false;
+            this.MaximizeButton.Visible = false;
+            this.MaximizeButton.Click += new System.EventHandler(this.MaximizeButton_Click);
+            // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.DarkGray;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Location = new System.Drawing.Point(746, 0);
+            this.MinimizeButton.Margin = new System.Windows.Forms.Padding(0);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(50, 30);
+            this.MinimizeButton.TabIndex = 2;
+            this.MinimizeButton.Text = "-";
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            this.MinimizeButton.Visible = false;
+            this.MinimizeButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // windowLayoutPanel2
+            // 
+            this.windowLayoutPanel2.ColumnCount = 1;
+            this.windowLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.windowLayoutPanel2.Controls.Add(this.toolBoxSpliter, 0, 1);
+            this.windowLayoutPanel2.Controls.Add(this.titleBarLayoutPanel, 0, 0);
+            this.windowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.windowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.windowLayoutPanel2.Name = "windowLayoutPanel2";
+            this.windowLayoutPanel2.RowCount = 2;
+            this.windowLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.windowLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.windowLayoutPanel2.Size = new System.Drawing.Size(897, 500);
+            this.windowLayoutPanel2.TabIndex = 9;
             // 
             // MainWindow
             // 
-            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(897, 522);
-            this.Controls.Add(this.toolBoxSpliter);
+            this.Controls.Add(this.windowLayoutPanel2);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(398, 403);
@@ -419,10 +547,14 @@
             this.WorkingAreaSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.WorkingAreaSplitContainer)).EndInit();
             this.WorkingAreaSplitContainer.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.toolBoxSpliter.Panel1.ResumeLayout(false);
             this.toolBoxSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolBoxSpliter)).EndInit();
             this.toolBoxSpliter.ResumeLayout(false);
+            this.titleBarLayoutPanel.ResumeLayout(false);
+            this.titleBarLayoutPanel.PerformLayout();
+            this.windowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,6 +596,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem teamToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel titleBarLayoutPanel;
+        private System.Windows.Forms.Button MaximizeButton;
+        private System.Windows.Forms.Button MinimizeButton;
+        private System.Windows.Forms.TableLayoutPanel windowLayoutPanel2;
     }
 }
 

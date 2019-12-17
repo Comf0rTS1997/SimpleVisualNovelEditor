@@ -19,7 +19,7 @@ namespace GameLinesEditor
 
         private String zoomConfig = Application.StartupPath + @"\" + "Zoom"; // file that save zoom number
         
-        private const bool DEBUGMODE = true;// debug mode switch
+        private const bool DEBUGMODE = false;// debug mode switch
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
@@ -39,6 +39,8 @@ namespace GameLinesEditor
             TOOLBOXWIDTH = this.Width / TOOLBOXWIDTHCONST;
             resizeToolBoxSpliter();
             this.treeView1Pointer = this.treeView1;
+            // maximize mode bound
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             // debug mode
             if (DEBUGMODE)
             {
@@ -381,6 +383,85 @@ namespace GameLinesEditor
         private void MainWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void MaximizeButton_Click(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        #region borderless window add resize and move function
+        private void titleBarLayoutPanel_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        // source : https://stackoverflow.com/questions/1241812/how-to-move-a-windows-form-when-its-formborderstyle-property-is-set-to-none
+
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+        private void titleBarLayoutPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Cursor.Position;
+            dragFormPoint = this.Location;
+        }
+
+        private void titleBarLayoutPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                if (this.WindowState == FormWindowState.Maximized)
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+                Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(dif));
+            }
+        }
+
+        private void titleBarLayoutPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+
+
+        #endregion
+
+        private void projectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProjectPropertySetting projectPropertySettingWindow = new ProjectPropertySetting();
+            if(projectPropertySettingWindow.ShowDialog() == DialogResult.OK)
+            {
+                this.projectMan.firstPlot = projectPropertySettingWindow.firstPlotNameInPropertyWindow;
+                saveFile();
+            }
         }
     }
 }
