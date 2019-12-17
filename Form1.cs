@@ -23,7 +23,7 @@ namespace GameLinesEditor
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
-        private const String SOFTWARENAME = " -SimpleVisualNovelEditor";
+
         public Scintilla richTextBox1Pointer;
         public TreeView treeView1Pointer;
         private int maxLineNumberCharLength = 1;
@@ -150,7 +150,6 @@ namespace GameLinesEditor
             {
                 this.filePath = saveFileDialog1.FileName;
                 System.IO.File.WriteAllText(this.filePath, richTextBox1.Text);
-                this.Text = this.filePath + SOFTWARENAME;
             }
         }
 
@@ -163,7 +162,6 @@ namespace GameLinesEditor
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.filePath = openFileDialog1.FileName;
-                this.Text = this.filePath + SOFTWARENAME;
                 this.richTextBox1.Text = System.IO.File.ReadAllText(this.filePath);
                 saveToolStripMenuItem.Enabled = true;
             }
