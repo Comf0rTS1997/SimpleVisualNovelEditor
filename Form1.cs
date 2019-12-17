@@ -19,7 +19,7 @@ namespace GameLinesEditor
 
         private String zoomConfig = Application.StartupPath + @"\" + "Zoom"; // file that save zoom number
         
-        private const bool DEBUGMODE = false;// debug mode switch
+        private const bool DEBUGMODE = true;// debug mode switch
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
@@ -185,7 +185,7 @@ namespace GameLinesEditor
 
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.IO.File.WriteAllText(this.filePath,textAnalizer.ConvertToJson(richTextBox1));
+            newTab("Test");
         }
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -258,6 +258,27 @@ namespace GameLinesEditor
         private void MainWindow_DragDrop(object sender, DragEventArgs e)
         {
             // String openPath = e.Data();
+        }
+
+        private TabPage newTab(String tabName)
+        {
+            TabPage tb = new TabPage(tabName);
+            Scintilla textBox = new Scintilla();
+            // init textBox
+            textBox.Margins[0].Type = MarginType.Number;
+            textBox.Margins[0].Width = 30;
+            textBox.Margins[1].Type = MarginType.ForeColor;
+            textBox.Styles[Style.Default].ForeColor = Color.White;
+            textBox.Margins[1].Width = 1;
+            textBox.Dock = DockStyle.Fill;
+            textBox.BorderStyle = BorderStyle.None;
+            // init page
+            tb.BackColor = Color.Silver;
+            tb.UseVisualStyleBackColor = true;
+            // Add to page 
+            tb.Controls.Add(textBox);
+            this.workingAreaTabControl.TabPages.Add(tb);
+            return tb;
         }
     }
 }
