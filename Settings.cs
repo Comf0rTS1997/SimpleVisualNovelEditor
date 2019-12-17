@@ -74,5 +74,11 @@ namespace GameLinesEditor
         {
             currentSettings = listBox1.Text;
         }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            currentSettings = listBox1.Text;
+            button1_Click(sender, e);
+        }
     }
 }

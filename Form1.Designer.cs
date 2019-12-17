@@ -250,6 +250,7 @@
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.EdgeColor = System.Drawing.Color.DarkGray;
             this.richTextBox1.Lexer = ScintillaNET.Lexer.Null;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
@@ -257,6 +258,7 @@
             this.richTextBox1.ScrollWidth = 1;
             this.richTextBox1.Size = new System.Drawing.Size(1044, 429);
             this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "Text";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             // 
