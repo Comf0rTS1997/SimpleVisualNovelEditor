@@ -183,6 +183,9 @@ namespace GameLinesEditor
                 case "UPDATE":
                     newNode.Add("UPDATE", node.Dequeue().Trim());
                     break;
+                case "GOTO":
+                    newNode.Add("GOTO", node.Dequeue().Trim());
+                    break;
                 default:
                     Console.WriteLine("Illegal function:" + functionName);
                     break;

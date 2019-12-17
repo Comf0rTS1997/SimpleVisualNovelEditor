@@ -103,6 +103,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataStructure\exportProperty.cs" />
     <Compile Include="DataStructure\ProjectObj.cs" />
     <Compile Include="DataStructure\SceneObj.cs" />
     <Compile Include="Form1.cs">

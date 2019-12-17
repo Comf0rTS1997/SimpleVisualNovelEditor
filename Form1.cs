@@ -19,7 +19,7 @@ namespace GameLinesEditor
 
         private String zoomConfig = Application.StartupPath + @"\" + "Zoom"; // file that save zoom number
         
-        private const bool DEBUGMODE = false;// debug mode switch
+        private const bool DEBUGMODE = true;// debug mode switch
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
@@ -54,7 +54,12 @@ namespace GameLinesEditor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFile();
-            updateTreeView();
+            try
+            {
+                updateTreeView();
+            }
+            catch { }
+            
         }
         #region workingAreaEnableDisableHelper
         private void setWorkingArea(bool sta)
@@ -130,7 +135,7 @@ namespace GameLinesEditor
 
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newTab("Test");
+            this.projectMan.firstPlot = "plot1";
         }
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -192,7 +197,28 @@ namespace GameLinesEditor
 
         private void exportProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            export();
+        }
 
+        private void export()
+        {
+            saveFile();
+            String exportPath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Release\";
+            System.IO.Directory.CreateDirectory(exportPath);
+            // export property File
+            if (this.projectMan.firstPlot == String.Empty)
+            {
+                MessageBox.Show("Start from which plot?");
+            }
+            System.IO.File.WriteAllText(exportPath + "index.info", this.projectMan.firstPlot);
+            // export all plot
+            foreach (String plot in this.projectMan.fileList)
+            {
+                Scintilla textBox;
+                this.plotToTabDict.TryGetValue(plot, out textBox);
+                String jsonOutPut = textAnalizer.ConvertToJson(textBox);
+                System.IO.File.WriteAllText(exportPath + plot + @".json", jsonOutPut);
+            }
         }
 
         private void addNewPlotToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,10 +279,10 @@ namespace GameLinesEditor
                 String projectFilePathTemp = openFileDialog1.FileName;
                 this.projectFilePath = projectFilePathTemp;
                 this.projectMan = projectReader.readProjectObjFromJson(System.IO.File.ReadAllText(projectFilePathTemp));
+                plotToTabDict = new Dictionary<string, Scintilla>();
                 foreach (String plot in projectMan.fileList)
                 {
                     Scintilla textBox = newTab(plot);
-                    plotToTabDict = new Dictionary<string, Scintilla>();
                     plotToTabDict.Add(plot,textBox);
                     String PlotPath = Path.GetDirectoryName(this.projectFilePath);
                     PlotPath = PlotPath + @"\" + plot + ".plot";

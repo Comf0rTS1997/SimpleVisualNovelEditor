@@ -11,6 +11,7 @@ namespace GameLinesEditor
     {
         public String projName;
         public  List<String>  fileList;
+        public String firstPlot;
 
         public ProjectObj(String nameIn, List<String> fileDicIn)
         {
