@@ -1,2 +1,4 @@
-# GameLinesEditor
-An IDE that can help making Visual Novel Games with Unity
+# SimpleVisualNovelEditor
+A simple IDE for SVS(Simple Visual Novel Script) language.
+## IDE documentation
+**TODO: add content**
