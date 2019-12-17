@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("New Project");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("New Project");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,12 +57,12 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.WorkingAreaSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TemplatePage = new System.Windows.Forms.TabPage();
             this.exportFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.autoSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.explorerSwitch = new System.Windows.Forms.Button();
             this.toolBoxSpliter = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.TemplatePage = new System.Windows.Forms.TabPage();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -70,12 +70,12 @@
             this.WorkingAreaSplitContainer.Panel1.SuspendLayout();
             this.WorkingAreaSplitContainer.Panel2.SuspendLayout();
             this.WorkingAreaSplitContainer.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.TemplatePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toolBoxSpliter)).BeginInit();
             this.toolBoxSpliter.Panel1.SuspendLayout();
             this.toolBoxSpliter.Panel2.SuspendLayout();
             this.toolBoxSpliter.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.TemplatePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -249,13 +249,15 @@
             // 
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.EdgeColor = System.Drawing.Color.DarkGray;
             this.richTextBox1.Lexer = ScintillaNET.Lexer.Null;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollWidth = 1;
+            this.richTextBox1.ScrollWidth = 25;
             this.richTextBox1.Size = new System.Drawing.Size(981, 507);
             this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "Text";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             // 
@@ -284,11 +286,11 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode7.Name = "Node0";
-            treeNode7.Text = "New Project";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "New Project";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7});
-            this.treeView1.Size = new System.Drawing.Size(153, 533);
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(153, 100);
             this.treeView1.TabIndex = 6;
             // 
             // WorkingAreaSplitContainer
@@ -310,6 +312,29 @@
             this.WorkingAreaSplitContainer.Size = new System.Drawing.Size(989, 533);
             this.WorkingAreaSplitContainer.SplitterDistance = 153;
             this.WorkingAreaSplitContainer.TabIndex = 7;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.AllowDrop = true;
+            this.tabControl1.Controls.Add(this.TemplatePage);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(989, 533);
+            this.tabControl1.TabIndex = 5;
+            // 
+            // TemplatePage
+            // 
+            this.TemplatePage.BackColor = System.Drawing.Color.Silver;
+            this.TemplatePage.Controls.Add(this.richTextBox1);
+            this.TemplatePage.Location = new System.Drawing.Point(4, 22);
+            this.TemplatePage.Margin = new System.Windows.Forms.Padding(0);
+            this.TemplatePage.Name = "TemplatePage";
+            this.TemplatePage.Size = new System.Drawing.Size(981, 507);
+            this.TemplatePage.TabIndex = 0;
+            this.TemplatePage.Text = "New File";
+            this.TemplatePage.UseVisualStyleBackColor = true;
             // 
             // explorerSwitch
             // 
@@ -354,29 +379,6 @@
             this.toolBoxSpliter.TabIndex = 8;
             this.toolBoxSpliter.TabStop = false;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.AllowDrop = true;
-            this.tabControl1.Controls.Add(this.TemplatePage);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(989, 533);
-            this.tabControl1.TabIndex = 5;
-            // 
-            // TemplatePage
-            // 
-            this.TemplatePage.BackColor = System.Drawing.Color.Silver;
-            this.TemplatePage.Controls.Add(this.richTextBox1);
-            this.TemplatePage.Location = new System.Drawing.Point(4, 22);
-            this.TemplatePage.Margin = new System.Windows.Forms.Padding(0);
-            this.TemplatePage.Name = "TemplatePage";
-            this.TemplatePage.Size = new System.Drawing.Size(981, 507);
-            this.TemplatePage.TabIndex = 0;
-            this.TemplatePage.Text = "New File";
-            this.TemplatePage.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AllowDrop = true;
@@ -406,12 +408,12 @@
             this.WorkingAreaSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.WorkingAreaSplitContainer)).EndInit();
             this.WorkingAreaSplitContainer.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.TemplatePage.ResumeLayout(false);
             this.toolBoxSpliter.Panel1.ResumeLayout(false);
             this.toolBoxSpliter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.toolBoxSpliter)).EndInit();
             this.toolBoxSpliter.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.TemplatePage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
