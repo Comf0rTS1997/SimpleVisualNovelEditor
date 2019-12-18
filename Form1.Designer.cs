@@ -41,9 +41,9 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plotManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.addNewPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.plotManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exportProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLable = new System.Windows.Forms.ToolStripStatusLabel();
+            this.MainFormProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.WorkingAreaSplitContainer = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -90,7 +91,7 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.DarkGray;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -99,10 +100,10 @@
             this.teamToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 6);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(206, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(205, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -118,7 +119,7 @@
             this.toolStripMenuItem2});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 28);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newProjectMenuItem3
@@ -178,15 +179,15 @@
             // 
             this.ProjectStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.projectSettingsToolStripMenuItem,
+            this.plotManagerToolStripMenuItem,
             this.toolStripSeparator5,
             this.addNewPlotToolStripMenuItem,
-            this.plotManagerToolStripMenuItem,
             this.toolStripSeparator1,
             this.exportProjectToolStripMenuItem});
             this.ProjectStripMenuItem.Enabled = false;
             this.ProjectStripMenuItem.Name = "ProjectStripMenuItem";
             this.ProjectStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
-            this.ProjectStripMenuItem.Size = new System.Drawing.Size(56, 22);
+            this.ProjectStripMenuItem.Size = new System.Drawing.Size(56, 28);
             this.ProjectStripMenuItem.Text = "&Project";
             // 
             // projectSettingsToolStripMenuItem
@@ -195,6 +196,13 @@
             this.projectSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.projectSettingsToolStripMenuItem.Text = "Project Properties";
             this.projectSettingsToolStripMenuItem.Click += new System.EventHandler(this.projectSettingsToolStripMenuItem_Click);
+            // 
+            // plotManagerToolStripMenuItem
+            // 
+            this.plotManagerToolStripMenuItem.Name = "plotManagerToolStripMenuItem";
+            this.plotManagerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.plotManagerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.plotManagerToolStripMenuItem.Text = "Plot Manager";
             // 
             // toolStripSeparator5
             // 
@@ -209,13 +217,6 @@
             this.addNewPlotToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.addNewPlotToolStripMenuItem.Text = "Add New Plot";
             this.addNewPlotToolStripMenuItem.Click += new System.EventHandler(this.addNewPlotToolStripMenuItem_Click);
-            // 
-            // plotManagerToolStripMenuItem
-            // 
-            this.plotManagerToolStripMenuItem.Name = "plotManagerToolStripMenuItem";
-            this.plotManagerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.plotManagerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.plotManagerToolStripMenuItem.Text = "Plot Manager";
             // 
             // toolStripSeparator1
             // 
@@ -237,14 +238,14 @@
             this.toolStripMenuItem1.Enabled = false;
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 28);
             this.toolStripMenuItem1.Text = "&Settings";
             this.toolStripMenuItem1.Visible = false;
             // 
             // preferenceToolStripMenuItem
             // 
             this.preferenceToolStripMenuItem.Name = "preferenceToolStripMenuItem";
-            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.preferenceToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.preferenceToolStripMenuItem.Text = "Preference";
             this.preferenceToolStripMenuItem.Click += new System.EventHandler(this.preferenceToolStripMenuItem_Click);
             // 
@@ -253,14 +254,14 @@
             this.teamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gitToolStripMenuItem});
             this.teamToolStripMenuItem.Name = "teamToolStripMenuItem";
-            this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
+            this.teamToolStripMenuItem.Size = new System.Drawing.Size(47, 28);
             this.teamToolStripMenuItem.Text = "&Team";
             this.teamToolStripMenuItem.Visible = false;
             // 
             // gitToolStripMenuItem
             // 
             this.gitToolStripMenuItem.Name = "gitToolStripMenuItem";
-            this.gitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gitToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.gitToolStripMenuItem.Text = "Git";
             // 
             // helpToolStripMenuItem
@@ -273,7 +274,7 @@
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.H)));
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 28);
             this.helpToolStripMenuItem.Text = "&Help";
             this.helpToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             // 
@@ -309,7 +310,6 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
@@ -319,19 +319,27 @@
             this.statusStrip1.BackColor = System.Drawing.Color.DarkGray;
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.statusLable,
+            this.MainFormProgressBar});
             this.statusStrip1.Location = new System.Drawing.Point(0, 500);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(897, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // statusLable
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 17);
-            this.toolStripStatusLabel1.Text = "Ready";
-            this.toolStripStatusLabel1.ToolTipText = "Status";
+            this.statusLable.Name = "statusLable";
+            this.statusLable.Size = new System.Drawing.Size(39, 17);
+            this.statusLable.Text = "Ready";
+            this.statusLable.ToolTipText = "Status";
+            // 
+            // MainFormProgressBar
+            // 
+            this.MainFormProgressBar.Name = "MainFormProgressBar";
+            this.MainFormProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.MainFormProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.MainFormProgressBar.Visible = false;
             // 
             // treeView1
             // 
@@ -440,10 +448,10 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(846, 0);
+            this.button1.Location = new System.Drawing.Point(842, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 30);
+            this.button1.Size = new System.Drawing.Size(55, 30);
             this.button1.TabIndex = 1;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
@@ -457,7 +465,7 @@
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.38606F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.titleBarLayoutPanel.Controls.Add(this.menuStrip1, 0, 0);
             this.titleBarLayoutPanel.Controls.Add(this.button1, 4, 0);
             this.titleBarLayoutPanel.Controls.Add(this.MaximizeButton, 3, 0);
@@ -480,7 +488,7 @@
             this.MaximizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MaximizeButton.FlatAppearance.BorderSize = 0;
             this.MaximizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaximizeButton.Location = new System.Drawing.Point(796, 0);
+            this.MaximizeButton.Location = new System.Drawing.Point(792, 0);
             this.MaximizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MaximizeButton.Name = "MaximizeButton";
             this.MaximizeButton.Size = new System.Drawing.Size(50, 30);
@@ -495,7 +503,7 @@
             this.MinimizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MinimizeButton.FlatAppearance.BorderSize = 0;
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Location = new System.Drawing.Point(746, 0);
+            this.MinimizeButton.Location = new System.Drawing.Point(742, 0);
             this.MinimizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(50, 30);
@@ -529,6 +537,7 @@
             this.ClientSize = new System.Drawing.Size(897, 522);
             this.Controls.Add(this.windowLayoutPanel2);
             this.Controls.Add(this.statusStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(398, 403);
@@ -580,7 +589,7 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLable;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.SplitContainer WorkingAreaSplitContainer;
         private System.Windows.Forms.ToolStripMenuItem preferenceToolStripMenuItem;
@@ -604,6 +613,7 @@
         private System.Windows.Forms.Button MaximizeButton;
         private System.Windows.Forms.Button MinimizeButton;
         private System.Windows.Forms.TableLayoutPanel windowLayoutPanel2;
+        private System.Windows.Forms.ToolStripProgressBar MainFormProgressBar;
     }
 }
 

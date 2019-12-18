@@ -31,6 +31,8 @@ namespace GameLinesEditor
 
         private Dictionary<String, Scintilla> plotToTabDict = new Dictionary<string, Scintilla>();
 
+        private int textBoxZoom = 1;
+
 
         public MainWindow()
         {
@@ -150,9 +152,9 @@ namespace GameLinesEditor
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            this.toolStripStatusLabel1.Text = "Procesing"; // change status bar text
+            this.statusLable.Text = "Procesing"; // change status bar text
             //exportFile(this.richTextBox1);            
-            this.toolStripStatusLabel1.Text = "Ready"; // Change back status bar text
+            this.statusLable.Text = "Ready"; // Change back status bar text
         }
 
         private void preferenceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -199,7 +201,14 @@ namespace GameLinesEditor
 
         private void exportProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.statusLable.Text = "Processing";
+            this.MainFormProgressBar.Value = 0;
+            this.MainFormProgressBar.Visible = true;
+            this.MainFormProgressBar.Value = 20;
             export();
+            this.MainFormProgressBar.Value = 100;
+            this.statusLable.Text = "Ready";
+            this.MainFormProgressBar.Visible = false;
         }
 
         private void export()
@@ -225,15 +234,18 @@ namespace GameLinesEditor
 
         private void addNewPlotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            newPlot newPlotNameForm = new newPlot(this);
-            newPlotNameForm.ShowDialog();
-            if(newPlotNameForm.DialogResult == DialogResult.OK)
+            if (this.projectMan != null)
             {
-                String plotName = newPlotNameForm.plotName;
-                Scintilla plotPage = newTab(plotName);
-                projectMan.fileList.Add(plotName);
-                this.plotToTabDict.Add(plotName,plotPage);
-                updateTreeView();
+                newPlot newPlotNameForm = new newPlot(this);
+                newPlotNameForm.ShowDialog();
+                if (newPlotNameForm.DialogResult == DialogResult.OK)
+                {
+                    String plotName = newPlotNameForm.plotName;
+                    Scintilla plotPage = newTab(plotName);
+                    projectMan.fileList.Add(plotName);
+                    this.plotToTabDict.Add(plotName, plotPage);
+                    updateTreeView();
+                }
             }
         }
 
@@ -278,20 +290,25 @@ namespace GameLinesEditor
             workingAreaTabControl.TabPages.Clear();
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                String projectFilePathTemp = openFileDialog1.FileName;
-                this.projectFilePath = projectFilePathTemp;
-                this.projectMan = projectReader.readProjectObjFromJson(System.IO.File.ReadAllText(projectFilePathTemp));
-                plotToTabDict = new Dictionary<string, Scintilla>();
-                foreach (String plot in projectMan.fileList)
-                {
-                    Scintilla textBox = newTab(plot);
-                    plotToTabDict.Add(plot,textBox);
-                    String PlotPath = Path.GetDirectoryName(this.projectFilePath);
-                    PlotPath = PlotPath + @"\" + plot + ".plot";
-                    textBox.Text = System.IO.File.ReadAllText(PlotPath);
-                }
-                setWorkingArea(true);
+                openFile(openFileDialog1.FileName);
             }
+        }
+
+        private void openFile(String filePath)
+        {
+            String projectFilePathTemp = filePath;
+            this.projectFilePath = projectFilePathTemp;
+            this.projectMan = projectReader.readProjectObjFromJson(System.IO.File.ReadAllText(projectFilePathTemp));
+            plotToTabDict = new Dictionary<string, Scintilla>();
+            foreach (String plot in projectMan.fileList)
+            {
+                Scintilla textBox = newTab(plot);
+                plotToTabDict.Add(plot, textBox);
+                String PlotPath = Path.GetDirectoryName(this.projectFilePath);
+                PlotPath = PlotPath + @"\" + plot + ".plot";
+                textBox.Text = System.IO.File.ReadAllText(PlotPath);
+            }
+            setWorkingArea(true);
         }
         #endregion
 
@@ -325,6 +342,7 @@ namespace GameLinesEditor
             textBox.BorderStyle = BorderStyle.None;
             textBox.ScrollWidth = 1;
             textBox.TextChanged += new System.EventHandler(this.textBoxLineNumberWidthAdapt);
+            textBox.Zoom = this.textBoxZoom;
             // init page
             tb.BackColor = Color.Silver;
             tb.UseVisualStyleBackColor = true;
@@ -361,6 +379,7 @@ namespace GameLinesEditor
                 setWorkingArea(true);
                 this.projectFilePath = newProjectDialog.FileName;
                 updateTreeView();
+                openFile(newProjectDialog.FileName);
             }
         }
 
