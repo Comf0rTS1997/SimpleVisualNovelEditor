@@ -83,7 +83,7 @@ namespace GameLinesEditor
 
             while(node.Count != 0)
             {
-                conversationHandlerHelper(characterName, node.Dequeue(), sceneMan);
+                conversationHandlerHelper(removeMarker(characterName), node.Dequeue(), sceneMan);
             }
         }
         private static void conversationHandlerHelper(String character, string text, SceneObj sceneMan) 
@@ -95,18 +95,37 @@ namespace GameLinesEditor
             character = character.Replace(Environment.NewLine, String.Empty);
             text = text.Replace(Environment.NewLine, String.Empty);
             //
+            // if character name has marker, add it to text;
+            String markerInCharacter = findMarker(character);
+            if(markerInCharacter != String.Empty)
+            {
+                text = '[' + markerInCharacter + ']' + text;
+            }
+            character = removeMarker(character);
+            //
             Dictionary<String, Object> newNode = new Dictionary<string, Object>();
             newNode.Add("type", "Conversation"); // the type of the node
             newNode.Add("Name", character); // add character name   
-            newNode.Add("text", text); // add text
+            String marker = findMarker(text);
+            if (marker == String.Empty)
+            {
+                newNode.Add("text", text); // add text
+            }
+            else // when there is marker in name
+            {
+                newNode.Add("MARKER", marker);
+                newNode.Add("text", removeMarker(text));
+            }
+            
             sceneMan.addNode(newNode);
-
         }
 
         //if the node is a function node
         private static void functionHandler(Queue<String> node, SceneObj sceneMan)
         {
             String firstLine = node.Dequeue();
+            String marker = findMarker(firstLine);
+            firstLine = removeMarker(firstLine);
             char[] Sperator = { ':', '：' };
             String[] firstLineComponent = firstLine.Split(Sperator);
             if (firstLineComponent.Count<String>() > 1)
@@ -118,7 +137,12 @@ namespace GameLinesEditor
             functionName = functionName.Remove(0,1);
             functionName = functionName.ToUpper();
             functionName = functionName.Trim();
+            
             Dictionary<String, Object> newNode = new Dictionary<string, object>();
+            if(marker != String.Empty)
+            {
+                newNode.Add("MARKER", marker);
+            }
             newNode.Add("type", "Function");
             newNode.Add("functionName",functionName);
             // analize this node
@@ -204,6 +228,32 @@ namespace GameLinesEditor
             return Result;
         }
 
+        // get the marker with given line
+        //(input does not contains node type indicator)
+        private static String findMarker(String input)
+        {
+            String result = String.Empty;
+            if (input.Contains("[") && input.Contains("]"))
+            {
+                input = input.Trim();
+                int left = input.IndexOf('[');
+                int right = input.IndexOf(']');
+                result = input.Substring(left + 1,right - left -1);
+            }
+            return result;
+        }
+
+        // remove the marker in the given line
+        private static String removeMarker(String input)
+        {
+            if (input.Contains("[") && input.Contains("]"))
+            {
+                int left = input.IndexOf('[');
+                int right = input.IndexOf(']');
+                input = input.Remove(left, right - left + 1);
+            }
+            return input;
+        }
         
 
         
