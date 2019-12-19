@@ -20,7 +20,6 @@ namespace GameLinesEditor
             textBox.ReadOnly = true; // User will not able to change text when processing
             SceneObj sceneMan = new SceneObj();
             int lineCount = textBox.Lines.Count;
-            Console.WriteLine("Total Line:" + lineCount);
             for (int i = 0; i < lineCount; i++)
             {
                 if (textBox.Lines[i].Text.Trim() == String.Empty)
@@ -57,7 +56,6 @@ namespace GameLinesEditor
                         foundEndOfNode = true;
                     } 
                 }
-                Console.WriteLine("node Size:" + node.Count);
                 switch (nodeFirstLine[0])
                 {
                     case '@':
@@ -69,7 +67,6 @@ namespace GameLinesEditor
                 }
             }
             textBox.ReadOnly = false; // unlock the textbox
-            Console.WriteLine("Conversion Done");
             return JsonConvert.SerializeObject(sceneMan, Formatting.Indented);
         }
         private static void conversationHandler(Queue<String> node, SceneObj sceneMan)
@@ -77,8 +74,19 @@ namespace GameLinesEditor
             //process first line
             char[] Sperator = { ':', '：' };
             String[] firstLineComponent = node.Dequeue().Split(Sperator);
-            String characterName = firstLineComponent[0];
-            String conversationText = firstLineComponent[1];
+            String characterName = "";
+            String conversationText = "";
+            if (firstLineComponent.Count<String>() > 1)
+            {
+                characterName = firstLineComponent[0];
+                conversationText = firstLineComponent[1];
+            }
+            else
+            {
+                conversationText = firstLineComponent[0]; // narritive text
+            }
+
+            
             conversationHandlerHelper(characterName, conversationText, sceneMan);
 
             while(node.Count != 0)
@@ -104,17 +112,18 @@ namespace GameLinesEditor
             character = removeMarker(character);
             //
             Dictionary<String, Object> newNode = new Dictionary<string, Object>();
-            newNode.Add("type", "Conversation"); // the type of the node
+            newNode.Add("Wait", "true");
+            newNode.Add("Type", "Conversation"); // the type of the node
             newNode.Add("Name", character); // add character name   
             String marker = findMarker(text);
             if (marker == String.Empty)
             {
-                newNode.Add("text", text); // add text
+                newNode.Add("Text", text); // add text
             }
             else // when there is marker in name
             {
                 newNode.Add("MARKER", marker);
-                newNode.Add("text", removeMarker(text));
+                newNode.Add("Text", removeMarker(text));
             }
             
             sceneMan.addNode(newNode);
@@ -143,8 +152,8 @@ namespace GameLinesEditor
             {
                 newNode.Add("MARKER", marker);
             }
-            newNode.Add("type", "Function");
-            newNode.Add("functionName",functionName);
+            newNode.Add("Type", "Function");
+            newNode.Add("FunctionName",functionName);
             // analize this node
             switch (functionName)
             {
@@ -185,6 +194,7 @@ namespace GameLinesEditor
                     Dictionary<String, String> optionDic = new Dictionary<string, string>();
                     while (node.Count > 0)
                     {
+                        optionDic.Add("Wait","true");
                         String pointingLine = node.Dequeue();
                         String[] pointingLineComponent = pointingLine.Split(Sperator);
                         // trim and add parameters
