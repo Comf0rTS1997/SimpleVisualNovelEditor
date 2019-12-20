@@ -49,10 +49,12 @@ Character 1 says: Text4.
 
 ```
 @[Marker1]Character1: Text line1
+             [Marker2]Text line1
 
 ...
 ...
 # GOTO: Marker1
+# GOTO: Marker2
 ```
 
 ## Function Node(# Node)
