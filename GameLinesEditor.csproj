@@ -135,6 +135,12 @@
       <DependentUpon>ProjectPropertySetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcesSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResourcesSettings.Designer.cs">
+      <DependentUpon>ResourcesSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResourcesSettings.resx">
+      <DependentUpon>ResourcesSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>

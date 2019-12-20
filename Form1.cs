@@ -46,8 +46,6 @@ namespace GameLinesEditor
             // debug mode
             if (DEBUGMODE)
             {
-                debugOpenToolStripMenuItem.Visible = true;
-                debugSaveToolStripMenuItem.Visible = true;
                 toolStripSeparator3.Visible = true;
                 debugToolStripMenuItem.Visible = true;
             }
@@ -88,12 +86,13 @@ namespace GameLinesEditor
             SaveFileDialog saveAsDialog = new SaveFileDialog();
             saveAsDialog.Filter = "Visual Novel Project(*.vnp) | *.vnp";
             saveAsDialog.FileName = String.Empty;
-            if(saveAsDialog.ShowDialog() == DialogResult.OK)
+            saveAsDialog.Title = "";
+            if (saveAsDialog.ShowDialog() == DialogResult.OK)
             {
                 this.projectFilePath = saveAsDialog.FileName;
                 saveFile();
+                updateTreeView();
             }
-            updateTreeView();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -207,9 +206,10 @@ namespace GameLinesEditor
             this.MainFormProgressBar.Value = 20;
             if (projectMan.firstPlot == String.Empty || !projectMan.fileList.Contains(projectMan.firstPlot))
             {
-                Form projectProperty = new ProjectPropertySetting();
+                Form projectProperty = new ProjectPropertySetting(this.projectMan.fileList, this.projectMan.firstPlot);
                 if(projectProperty.ShowDialog() == DialogResult.OK)
                 {
+                    saveFile();
                     export();
                 }
                 else
@@ -233,10 +233,6 @@ namespace GameLinesEditor
             String exportPath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Release\";
             System.IO.Directory.CreateDirectory(exportPath);
             // export property File
-            if (this.projectMan.firstPlot == String.Empty)
-            {
-                MessageBox.Show("Start from which plot?");
-            }
             System.IO.File.WriteAllText(exportPath + "index.info", this.projectMan.firstPlot);
             // export all plot
             foreach (String plot in this.projectMan.fileList)
@@ -258,10 +254,17 @@ namespace GameLinesEditor
                 if (newPlotNameForm.DialogResult == DialogResult.OK)
                 {
                     String plotName = newPlotNameForm.plotName;
+                    if (this.projectMan.firstPlot == null || 
+                        this.projectMan.firstPlot == String.Empty ||
+                        !this.projectMan.fileList.Contains(this.projectMan.firstPlot))
+                    {
+                        this.projectMan.firstPlot = plotName;
+                    }
                     Scintilla plotPage = newTab(plotName);
                     projectMan.fileList.Add(plotName);
                     this.plotToTabDict.Add(plotName, plotPage);
                     updateTreeView();
+                    saveFile();
                 }
             }
         }
@@ -275,11 +278,7 @@ namespace GameLinesEditor
             this.projectMan = new ProjectObj(projectName,new List<String>());
             System.IO.File.WriteAllText(filePath, projectMan.returnJson());
         }
-        // Export the whole project
-        private void exportFile(Scintilla input)
-        {
 
-        }
         private void saveFile()
         {
             System.IO.File.WriteAllText(this.projectFilePath, this.projectMan.returnJson());
@@ -390,6 +389,7 @@ namespace GameLinesEditor
             newProjectDialog.Filter = "Visual Novel Project(*.vnp) | *.vnp";
             newProjectDialog.FileName = "";
             newProjectDialog.AddExtension = true;
+            newProjectDialog.Title = "New Project";
             if (newProjectDialog.ShowDialog() == DialogResult.OK)
             {
                 createNewProjectFile(newProjectDialog.FileName);
@@ -492,12 +492,19 @@ namespace GameLinesEditor
 
         private void projectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjectPropertySetting projectPropertySettingWindow = new ProjectPropertySetting();
+            ProjectPropertySetting projectPropertySettingWindow = new ProjectPropertySetting(this.projectMan.fileList, this.projectMan.firstPlot);
             if(projectPropertySettingWindow.ShowDialog() == DialogResult.OK)
             {
                 this.projectMan.firstPlot = projectPropertySettingWindow.firstPlotNameInPropertyWindow;
                 saveFile();
             }
         }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            MessageBox.Show(e.Node.Text);
+        }
+
+       
     }
 }
