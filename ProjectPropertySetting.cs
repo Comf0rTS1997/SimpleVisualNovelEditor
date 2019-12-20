@@ -21,7 +21,7 @@ namespace GameLinesEditor
 
         private void ProjectPropertySetting_Load(object sender, EventArgs e)
         {
-
+            this.textBox1.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)

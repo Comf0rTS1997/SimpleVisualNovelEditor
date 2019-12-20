@@ -103,7 +103,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(205, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(204, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -448,10 +448,10 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(842, 0);
+            this.button1.Location = new System.Drawing.Point(841, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 30);
+            this.button1.Size = new System.Drawing.Size(56, 30);
             this.button1.TabIndex = 1;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
@@ -465,7 +465,7 @@
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.38606F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.titleBarLayoutPanel.Controls.Add(this.menuStrip1, 0, 0);
             this.titleBarLayoutPanel.Controls.Add(this.button1, 4, 0);
             this.titleBarLayoutPanel.Controls.Add(this.MaximizeButton, 3, 0);
@@ -488,7 +488,7 @@
             this.MaximizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MaximizeButton.FlatAppearance.BorderSize = 0;
             this.MaximizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaximizeButton.Location = new System.Drawing.Point(792, 0);
+            this.MaximizeButton.Location = new System.Drawing.Point(791, 0);
             this.MaximizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MaximizeButton.Name = "MaximizeButton";
             this.MaximizeButton.Size = new System.Drawing.Size(50, 30);
@@ -503,7 +503,7 @@
             this.MinimizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MinimizeButton.FlatAppearance.BorderSize = 0;
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Location = new System.Drawing.Point(742, 0);
+            this.MinimizeButton.Location = new System.Drawing.Point(741, 0);
             this.MinimizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(50, 30);

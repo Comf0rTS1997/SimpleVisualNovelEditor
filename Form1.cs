@@ -19,7 +19,7 @@ namespace GameLinesEditor
 
         private String zoomConfig = Application.StartupPath + @"\" + "Zoom"; // file that save zoom number
         
-        private const bool DEBUGMODE = false;// debug mode switch
+        private const bool DEBUGMODE = true;// debug mode switch
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
 
@@ -139,7 +139,7 @@ namespace GameLinesEditor
 
         private void debugToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.projectMan.firstPlot = "plot1";
+            
         }
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -205,10 +205,26 @@ namespace GameLinesEditor
             this.MainFormProgressBar.Value = 0;
             this.MainFormProgressBar.Visible = true;
             this.MainFormProgressBar.Value = 20;
-            export();
+            if (projectMan.firstPlot == String.Empty || !projectMan.fileList.Contains(projectMan.firstPlot))
+            {
+                Form projectProperty = new ProjectPropertySetting();
+                if(projectProperty.ShowDialog() == DialogResult.OK)
+                {
+                    export();
+                }
+                else
+                {
+                    MessageBox.Show("You didn't set which Plot should be played first.", "What are you doing????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                export();  
+            }
             this.MainFormProgressBar.Value = 100;
             this.statusLable.Text = "Ready";
             this.MainFormProgressBar.Visible = false;
+
         }
 
         private void export()
@@ -230,6 +246,7 @@ namespace GameLinesEditor
                 String jsonOutPut = textAnalizer.ConvertToJson(textBox);
                 System.IO.File.WriteAllText(exportPath + plot + @".json", jsonOutPut);
             }
+            MessageBox.Show("Success! Yeah!", "Result", MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void addNewPlotToolStripMenuItem_Click(object sender, EventArgs e)
