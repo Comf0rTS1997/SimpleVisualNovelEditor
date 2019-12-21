@@ -59,10 +59,35 @@ Character 1 says: Text4.
 
 ## Function Node(# Node)
 1. BGM function: Update the Background music that is currently playing
+```
+
+```
 2. SOUND function: Play sound effect
+```
+
+```
 3. ANIMATION function: Play animation on picture
+```
+
+```
 4. GAME function: Start playing mini game that is embeded in the visualnovel game
+```
+
+```
 5. SWITCH function: Check current value
-6. OPTION function: Show 
-7. UPDATE function: Update the picture that is showing on the screen
-8. GOTO function: Goto another conversation node
+```
+
+```
+6. OPTION function: Show option
+```
+
+```
+7. GOTO function: Goto another conversation node
+```
+
+```
+8. SHOW function
+Example:
+```
+# SHOW: character1@(horizontalLocation,VerticalLocation)
+```
