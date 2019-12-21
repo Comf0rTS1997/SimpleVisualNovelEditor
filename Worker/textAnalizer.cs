@@ -220,6 +220,14 @@ namespace GameLinesEditor
                 case "GOTO":
                     newNode.Add("GOTO", node.Dequeue().Trim());
                     break;
+                case "SHOW":
+                    String instruction = node.Dequeue().Trim();
+                    String[] temp = instruction.Split('@');
+                    String characterName = temp[0];
+                    String location = temp[1];
+                    newNode.Add("SHOW", characterName);
+                    newNode.Add("LOCATION", location);
+                    break;
                 default:
                     Console.WriteLine("Illegal function:" + functionName);
                     break;
@@ -264,10 +272,6 @@ namespace GameLinesEditor
             }
             return input;
         }
-        
-
-        
-
-
+       
     }
 }

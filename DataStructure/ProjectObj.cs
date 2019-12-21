@@ -13,13 +13,14 @@ namespace GameLinesEditor
         public  List<String>  fileList;
         public String firstPlot;
         public Dictionary<String, String> resourceMap;
-        public String[] character;
+        public Dictionary<String, Dictionary<String,String>> characterList; 
 
-        public ProjectObj(String nameIn, List<String> fileDicIn, Dictionary<string, string> resourceMapIn)
+        public ProjectObj(String nameIn, List<String> fileDicIn, Dictionary<string, string> resourceMapIn, Dictionary<String, Dictionary<String, String>> characterListIn)
         {
             this.projName = nameIn;
             this.fileList = fileDicIn;
             this.resourceMap = resourceMapIn;
+            this.characterList = characterListIn;
         }
 
 

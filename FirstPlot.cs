@@ -55,14 +55,5 @@ namespace GameLinesEditor
                     break;
             } 
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form resourcesSet = new ResourcesSettings();
-            if (resourcesSet.ShowDialog() == DialogResult.OK)
-            {
-
-            }
-        }
     }
 }

@@ -225,6 +225,7 @@ namespace GameLinesEditor
                 else
                 {
                     export();
+                    MessageBox.Show("ExportSuccess","Export Result",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 this.MainFormProgressBar.Value = 100;
                 this.statusLable.Text = "Ready";
@@ -279,7 +280,7 @@ namespace GameLinesEditor
         private void createNewProjectFile(String filePath)
         {
             String projectName = Path.GetFileNameWithoutExtension(filePath);
-            this.projectMan = new ProjectObj(projectName,new List<String>(),new Dictionary<string, string>());
+            this.projectMan = new ProjectObj(projectName,new List<String>(),new Dictionary<string, string>(), new Dictionary<String, Dictionary<String, String>>());
             System.IO.File.WriteAllText(filePath, projectMan.returnJson());
         }
 
@@ -547,6 +548,18 @@ namespace GameLinesEditor
         private void buildGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gameCharacterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CharacterManagement cm = new CharacterManagement();
+            cm.ShowDialog();
+        }
+
+        private void resouresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResourcesSettings rs = new ResourcesSettings(this.projectMan.resourceMap);
+            rs.ShowDialog();
         }
     }
 }

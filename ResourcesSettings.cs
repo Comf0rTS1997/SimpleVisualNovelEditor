@@ -12,9 +12,16 @@ namespace GameLinesEditor
 {
     public partial class ResourcesSettings : Form
     {
-        public ResourcesSettings()
+        public Dictionary<String, String> resourceMap;
+        public ResourcesSettings(Dictionary<String, String> resourcesMapIn)
         {
             InitializeComponent();
+            this.resourceMap = resourcesMapIn;
+        }
+
+        private void ResourcesSettings_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

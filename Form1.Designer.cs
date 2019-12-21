@@ -42,6 +42,7 @@
             this.ProjectStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importResourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameCharacterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.MaximizeButton = new System.Windows.Forms.Button();
             this.MinimizeButton = new System.Windows.Forms.Button();
             this.windowLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.gameCharacterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resouresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WorkingAreaSplitContainer)).BeginInit();
@@ -103,7 +104,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(204, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(203, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -178,6 +179,7 @@
             this.ProjectStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importResourcesToolStripMenuItem,
             this.projectSettingsToolStripMenuItem,
+            this.resouresToolStripMenuItem,
             this.gameCharacterToolStripMenuItem,
             this.addNewPlotToolStripMenuItem,
             this.toolStripSeparator1,
@@ -204,6 +206,13 @@
             this.projectSettingsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.projectSettingsToolStripMenuItem.Text = "Set First Plot";
             this.projectSettingsToolStripMenuItem.Click += new System.EventHandler(this.projectSettingsToolStripMenuItem_Click);
+            // 
+            // gameCharacterToolStripMenuItem
+            // 
+            this.gameCharacterToolStripMenuItem.Name = "gameCharacterToolStripMenuItem";
+            this.gameCharacterToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.gameCharacterToolStripMenuItem.Text = "GameCharacter";
+            this.gameCharacterToolStripMenuItem.Click += new System.EventHandler(this.gameCharacterToolStripMenuItem_Click);
             // 
             // addNewPlotToolStripMenuItem
             // 
@@ -446,10 +455,10 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(838, 0);
+            this.button1.Location = new System.Drawing.Point(837, 0);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 30);
+            this.button1.Size = new System.Drawing.Size(60, 30);
             this.button1.TabIndex = 1;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = false;
@@ -463,7 +472,7 @@
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.38606F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.titleBarLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.titleBarLayoutPanel.Controls.Add(this.menuStrip1, 0, 0);
             this.titleBarLayoutPanel.Controls.Add(this.button1, 4, 0);
             this.titleBarLayoutPanel.Controls.Add(this.MaximizeButton, 3, 0);
@@ -486,7 +495,7 @@
             this.MaximizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MaximizeButton.FlatAppearance.BorderSize = 0;
             this.MaximizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MaximizeButton.Location = new System.Drawing.Point(788, 0);
+            this.MaximizeButton.Location = new System.Drawing.Point(787, 0);
             this.MaximizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MaximizeButton.Name = "MaximizeButton";
             this.MaximizeButton.Size = new System.Drawing.Size(50, 30);
@@ -501,7 +510,7 @@
             this.MinimizeButton.BackColor = System.Drawing.Color.DarkGray;
             this.MinimizeButton.FlatAppearance.BorderSize = 0;
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Location = new System.Drawing.Point(738, 0);
+            this.MinimizeButton.Location = new System.Drawing.Point(737, 0);
             this.MinimizeButton.Margin = new System.Windows.Forms.Padding(0);
             this.MinimizeButton.Name = "MinimizeButton";
             this.MinimizeButton.Size = new System.Drawing.Size(50, 30);
@@ -526,12 +535,12 @@
             this.windowLayoutPanel2.Size = new System.Drawing.Size(897, 500);
             this.windowLayoutPanel2.TabIndex = 9;
             // 
-            // gameCharacterToolStripMenuItem
+            // resouresToolStripMenuItem
             // 
-            this.gameCharacterToolStripMenuItem.Name = "gameCharacterToolStripMenuItem";
-            this.gameCharacterToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.gameCharacterToolStripMenuItem.Text = "GameCharacter";
-            this.gameCharacterToolStripMenuItem.Visible = false;
+            this.resouresToolStripMenuItem.Name = "resouresToolStripMenuItem";
+            this.resouresToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.resouresToolStripMenuItem.Text = "Resoures";
+            this.resouresToolStripMenuItem.Click += new System.EventHandler(this.resouresToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -619,6 +628,7 @@
         private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buildGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gameCharacterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resouresToolStripMenuItem;
     }
 }
 
