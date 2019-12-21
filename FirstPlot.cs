@@ -11,12 +11,12 @@ using System.Windows.Forms;
 namespace GameLinesEditor
 {
    
-    public partial class ProjectPropertySetting : Form
+    public partial class FirstPlot : Form
     {
         public String firstPlotNameInPropertyWindow;
         public List<String> plotList;
         public String currentFirstPlot;
-        public ProjectPropertySetting(List<String> plotListIn, String CurrentPlotIn)
+        public FirstPlot(List<String> plotListIn, String CurrentPlotIn)
         {
             InitializeComponent();
             this.plotList = plotListIn;

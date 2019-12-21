@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ScintillaNET;
 using System.IO;
+using AutocompleteMenuNS;
 
 
 namespace GameLinesEditor
@@ -22,6 +23,8 @@ namespace GameLinesEditor
         private const bool DEBUGMODE = true;// debug mode switch
 
         public String currentSettings = Application.StartupPath + "\\" + "Settings"; // file that save the mode
+
+        
 
         public TreeView treeView1Pointer;
         private int maxLineNumberCharLength = 1;
@@ -200,31 +203,33 @@ namespace GameLinesEditor
 
         private void exportProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.statusLable.Text = "Processing";
-            this.MainFormProgressBar.Value = 0;
-            this.MainFormProgressBar.Visible = true;
-            this.MainFormProgressBar.Value = 20;
-            if (projectMan.firstPlot == String.Empty || !projectMan.fileList.Contains(projectMan.firstPlot))
+            if (this.projectMan != null)
             {
-                Form projectProperty = new ProjectPropertySetting(this.projectMan.fileList, this.projectMan.firstPlot);
-                if(projectProperty.ShowDialog() == DialogResult.OK)
+                this.statusLable.Text = "Processing";
+                this.MainFormProgressBar.Value = 0;
+                this.MainFormProgressBar.Visible = true;
+                this.MainFormProgressBar.Value = 20;
+                if (projectMan.firstPlot == String.Empty || !projectMan.fileList.Contains(projectMan.firstPlot))
                 {
-                    saveFile();
-                    export();
+                    Form projectProperty = new FirstPlot(this.projectMan.fileList, this.projectMan.firstPlot);
+                    if (projectProperty.ShowDialog() == DialogResult.OK)
+                    {
+                        saveFile();
+                        export();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You didn't set which Plot should be played first.", "What are you doing????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("You didn't set which Plot should be played first.", "What are you doing????", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    export();
                 }
+                this.MainFormProgressBar.Value = 100;
+                this.statusLable.Text = "Ready";
+                this.MainFormProgressBar.Visible = false;
             }
-            else
-            {
-                export();  
-            }
-            this.MainFormProgressBar.Value = 100;
-            this.statusLable.Text = "Ready";
-            this.MainFormProgressBar.Visible = false;
-
         }
 
         private void export()
@@ -242,7 +247,6 @@ namespace GameLinesEditor
                 String jsonOutPut = textAnalizer.ConvertToJson(textBox);
                 System.IO.File.WriteAllText(exportPath + plot + @".json", jsonOutPut);
             }
-            MessageBox.Show("Success! Yeah!", "Result", MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void addNewPlotToolStripMenuItem_Click(object sender, EventArgs e)
@@ -275,7 +279,7 @@ namespace GameLinesEditor
         private void createNewProjectFile(String filePath)
         {
             String projectName = Path.GetFileNameWithoutExtension(filePath);
-            this.projectMan = new ProjectObj(projectName,new List<String>());
+            this.projectMan = new ProjectObj(projectName,new List<String>(),new Dictionary<string, string>());
             System.IO.File.WriteAllText(filePath, projectMan.returnJson());
         }
 
@@ -359,6 +363,8 @@ namespace GameLinesEditor
             textBox.ScrollWidth = 1;
             textBox.TextChanged += new System.EventHandler(this.textBoxLineNumberWidthAdapt);
             textBox.Zoom = this.textBoxZoom;
+            // add auto complete
+
             // init page
             tb.BackColor = Color.Silver;
             tb.UseVisualStyleBackColor = true;
@@ -397,6 +403,9 @@ namespace GameLinesEditor
                 this.projectFilePath = newProjectDialog.FileName;
                 updateTreeView();
                 openFile(newProjectDialog.FileName);
+                String resourcePath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Resources\";
+                
+                System.IO.Directory.CreateDirectory(resourcePath);
             }
         }
 
@@ -492,7 +501,7 @@ namespace GameLinesEditor
 
         private void projectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjectPropertySetting projectPropertySettingWindow = new ProjectPropertySetting(this.projectMan.fileList, this.projectMan.firstPlot);
+            FirstPlot projectPropertySettingWindow = new FirstPlot(this.projectMan.fileList, this.projectMan.firstPlot);
             if(projectPropertySettingWindow.ShowDialog() == DialogResult.OK)
             {
                 this.projectMan.firstPlot = projectPropertySettingWindow.firstPlotNameInPropertyWindow;
@@ -502,9 +511,42 @@ namespace GameLinesEditor
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            MessageBox.Show(e.Node.Text);
+            //MessageBox.Show(e.Node.Text);
         }
 
-       
+        private void importResourcesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog importRes = new OpenFileDialog();
+            importRes.InitialDirectory = this.projectFilePath;
+            if(importRes.ShowDialog() == DialogResult.OK)
+            {
+                String FilePath = importRes.FileName;
+                String FileName = Path.GetFileName(FilePath);
+                String resPath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Resources\";
+                ImportResources importDialog = new ImportResources(FileName);
+                if (importDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.projectMan.resourceMap.Add(importDialog.nickName,FileName);
+                    System.IO.File.Copy(FilePath, resPath + FileName);
+                }
+
+            }
+        }
+
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.projectMan != null)
+            {
+                exportProjectToolStripMenuItem_Click(sender, e);
+                // debug from release data
+                Form debugPlayer = new DebugPlayer(Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Release\");
+                debugPlayer.ShowDialog();
+            }
+        }
+
+        private void buildGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
