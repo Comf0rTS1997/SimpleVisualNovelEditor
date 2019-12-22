@@ -12,16 +12,21 @@ namespace GameLinesEditor
 {
     public partial class ResourcesSettings : Form
     {
-        public Dictionary<String, String> resourceMap;
-        public ResourcesSettings(Dictionary<String, String> resourcesMapIn)
+        public Dictionary<String, Dictionary<String, String>> characterMap;
+        public ResourcesSettings(Dictionary<String, Dictionary<String, String>> characterMapIn)
         {
             InitializeComponent();
-            this.resourceMap = resourcesMapIn;
+            this.characterMap = characterMapIn;
         }
 
         private void ResourcesSettings_Load(object sender, EventArgs e)
         {
-            
+            String[] row = new string[4];
+            row[0] = "Game";
+            row[1] = "aaa";
+            row[2] = "bbb";
+            row[3] = "ccc";
+            listView1.Items.Add(new ListViewItem(row));
         }
     }
 }

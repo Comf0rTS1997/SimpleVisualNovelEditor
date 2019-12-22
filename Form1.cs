@@ -209,9 +209,9 @@ namespace GameLinesEditor
                 this.MainFormProgressBar.Value = 0;
                 this.MainFormProgressBar.Visible = true;
                 this.MainFormProgressBar.Value = 20;
-                if (projectMan.firstPlot == String.Empty || !projectMan.fileList.Contains(projectMan.firstPlot))
+                if (projectMan.firstPlot == String.Empty || !projectMan.plotList.Contains(projectMan.firstPlot))
                 {
-                    Form projectProperty = new FirstPlot(this.projectMan.fileList, this.projectMan.firstPlot);
+                    Form projectProperty = new FirstPlot(this.projectMan.plotList, this.projectMan.firstPlot);
                     if (projectProperty.ShowDialog() == DialogResult.OK)
                     {
                         saveFile();
@@ -241,7 +241,7 @@ namespace GameLinesEditor
             // export property File
             System.IO.File.WriteAllText(exportPath + "index.info", this.projectMan.firstPlot);
             // export all plot
-            foreach (String plot in this.projectMan.fileList)
+            foreach (String plot in this.projectMan.plotList)
             {
                 Scintilla textBox;
                 this.plotToTabDict.TryGetValue(plot, out textBox);
@@ -261,12 +261,12 @@ namespace GameLinesEditor
                     String plotName = newPlotNameForm.plotName;
                     if (this.projectMan.firstPlot == null || 
                         this.projectMan.firstPlot == String.Empty ||
-                        !this.projectMan.fileList.Contains(this.projectMan.firstPlot))
+                        !this.projectMan.plotList.Contains(this.projectMan.firstPlot))
                     {
                         this.projectMan.firstPlot = plotName;
                     }
                     Scintilla plotPage = newTab(plotName);
-                    projectMan.fileList.Add(plotName);
+                    projectMan.plotList.Add(plotName);
                     this.plotToTabDict.Add(plotName, plotPage);
                     updateTreeView();
                     saveFile();
@@ -280,14 +280,15 @@ namespace GameLinesEditor
         private void createNewProjectFile(String filePath)
         {
             String projectName = Path.GetFileNameWithoutExtension(filePath);
-            this.projectMan = new ProjectObj(projectName,new List<String>(),new Dictionary<string, string>(), new Dictionary<String, Dictionary<String, String>>());
+            this.projectMan = new ProjectObj(projectName,new List<String>(), new Dictionary<String, Dictionary<String, String>>());
+            this.projectMan.characterList.Add("Game", new Dictionary<string, string>());
             System.IO.File.WriteAllText(filePath, projectMan.returnJson());
         }
 
         private void saveFile()
         {
             System.IO.File.WriteAllText(this.projectFilePath, this.projectMan.returnJson());
-            foreach (String plot in projectMan.fileList)
+            foreach (String plot in projectMan.plotList)
             {
                 Scintilla textBox;
                 plotToTabDict.TryGetValue(plot,out textBox);
@@ -321,7 +322,7 @@ namespace GameLinesEditor
             this.projectFilePath = projectFilePathTemp;
             this.projectMan = projectReader.readProjectObjFromJson(System.IO.File.ReadAllText(projectFilePathTemp));
             plotToTabDict = new Dictionary<string, Scintilla>();
-            foreach (String plot in projectMan.fileList)
+            foreach (String plot in projectMan.plotList)
             {
                 Scintilla textBox = newTab(plot);
                 plotToTabDict.Add(plot, textBox);
@@ -341,7 +342,7 @@ namespace GameLinesEditor
             }catch { }
             TreeNode projectParentNode = new TreeNode(this.projectMan.projName);
             this.Text = this.projectMan.projName + "-SimpleVisualNovelEditor";
-            foreach (String plot in projectMan.fileList)
+            foreach (String plot in projectMan.plotList)
             {
                 projectParentNode.Nodes.Add(plot);
             }
@@ -405,7 +406,6 @@ namespace GameLinesEditor
                 updateTreeView();
                 openFile(newProjectDialog.FileName);
                 String resourcePath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Resources\";
-                
                 System.IO.Directory.CreateDirectory(resourcePath);
             }
         }
@@ -502,7 +502,7 @@ namespace GameLinesEditor
 
         private void projectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FirstPlot projectPropertySettingWindow = new FirstPlot(this.projectMan.fileList, this.projectMan.firstPlot);
+            FirstPlot projectPropertySettingWindow = new FirstPlot(this.projectMan.plotList, this.projectMan.firstPlot);
             if(projectPropertySettingWindow.ShowDialog() == DialogResult.OK)
             {
                 this.projectMan.firstPlot = projectPropertySettingWindow.firstPlotNameInPropertyWindow;
@@ -521,16 +521,17 @@ namespace GameLinesEditor
             importRes.InitialDirectory = this.projectFilePath;
             if(importRes.ShowDialog() == DialogResult.OK)
             {
-                String FilePath = importRes.FileName;
-                String FileName = Path.GetFileName(FilePath);
-                String resPath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Resources\";
-                ImportResources importDialog = new ImportResources(FileName);
+                String FilePath = importRes.FileName; // absolute path of the imported file
+                String FileName = Path.GetFileName(FilePath); // file name of the imported file(with extension)
+                String resPath = Path.GetDirectoryName(this.projectFilePath) + @"\" + @"Resources\"; // get absolute path of the resources folder
+                ImportResources importDialog = new ImportResources(FileName, this.projectMan.characterList.Keys.ToArray<String>());
                 if (importDialog.ShowDialog() == DialogResult.OK)
                 {
-                    this.projectMan.resourceMap.Add(importDialog.nickName,FileName);
+                    Dictionary<String, String> CharacterFileList;
+                    this.projectMan.characterList.TryGetValue(importDialog.CharacterName,out CharacterFileList);
+                    CharacterFileList.Add(importDialog.nickName, importDialog.fileName);
                     System.IO.File.Copy(FilePath, resPath + FileName);
                 }
-
             }
         }
 
@@ -558,7 +559,7 @@ namespace GameLinesEditor
 
         private void resouresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ResourcesSettings rs = new ResourcesSettings(this.projectMan.resourceMap);
+            ResourcesSettings rs = new ResourcesSettings(this.projectMan.characterList);
             rs.ShowDialog();
         }
     }

@@ -47,7 +47,7 @@
             this.label1.Location = new System.Drawing.Point(10, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 24);
+            this.label1.Size = new System.Drawing.Size(107, 14);
             this.label1.TabIndex = 0;
             this.label1.Text = "FileName:";
             // 
@@ -55,19 +55,20 @@
             // 
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fileNameLabel.Location = new System.Drawing.Point(130, 0);
+            this.fileNameLabel.Location = new System.Drawing.Point(137, 10);
+            this.fileNameLabel.Margin = new System.Windows.Forms.Padding(10);
             this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(122, 44);
+            this.fileNameLabel.Size = new System.Drawing.Size(108, 14);
             this.fileNameLabel.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(10, 98);
+            this.label2.Location = new System.Drawing.Point(10, 78);
             this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 24);
+            this.label2.Size = new System.Drawing.Size(107, 14);
             this.label2.TabIndex = 2;
             this.label2.Text = "NickName";
             // 
@@ -75,20 +76,25 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(10, 54);
+            this.label3.Location = new System.Drawing.Point(10, 44);
             this.label3.Margin = new System.Windows.Forms.Padding(10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 24);
+            this.label3.Size = new System.Drawing.Size(107, 14);
             this.label3.TabIndex = 3;
             this.label3.Text = "Character:";
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(130, 47);
+            this.comboBox1.Location = new System.Drawing.Point(137, 44);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.comboBox1.MaxDropDownItems = 50;
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(122, 21);
+            this.comboBox1.Size = new System.Drawing.Size(108, 21);
+            this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -111,13 +117,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 178);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 138);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(3, 152);
+            this.button1.Location = new System.Drawing.Point(3, 112);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 23);
             this.button1.TabIndex = 5;
@@ -128,7 +134,7 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button2.Location = new System.Drawing.Point(130, 152);
+            this.button2.Location = new System.Drawing.Point(130, 112);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(122, 23);
             this.button2.TabIndex = 6;
@@ -139,22 +145,24 @@
             // nickNameInput
             // 
             this.nickNameInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nickNameInput.Location = new System.Drawing.Point(130, 91);
+            this.nickNameInput.Location = new System.Drawing.Point(137, 78);
+            this.nickNameInput.Margin = new System.Windows.Forms.Padding(10);
             this.nickNameInput.Name = "nickNameInput";
-            this.nickNameInput.Size = new System.Drawing.Size(122, 20);
+            this.nickNameInput.Size = new System.Drawing.Size(108, 20);
             this.nickNameInput.TabIndex = 7;
             // 
             // ImportResources
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(255, 178);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(255, 138);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ImportResources";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Import Resources";
             this.Load += new System.EventHandler(this.ImportResources_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
