@@ -86,13 +86,17 @@ Character 1 says: Text4.
 ```
 
 ```
-8. SHOW function
+8. SHOW,SETIMAGE,and MOVE function
 Example:
 ```
 # SHOW: character1@(horizontalLocation,VerticalLocation)
-### Note: SetPos and Move must be used after SetImage
+// Note: SetPos and Move must be used after SetImage
+#SetImage:ch1:pic8
+#SetPos:ch1=(1.5,1)
+#Move:ch1=(0.5,0.5)
 ```
-SetImage:ch1:pic8
-SetPos:ch1:(1.5,1)
-Move:ch1:(0.5,0.5)
+9.Add Comment to script
 ```
+// Comment
+```
+
