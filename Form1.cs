@@ -339,7 +339,7 @@ namespace GameLinesEditor
                 this.treeView1.Nodes.RemoveAt(0);
             }catch { }
             TreeNode projectParentNode = new TreeNode(this.projectMan.projName);
-            this.Text = this.projectMan.projName + "-SimpleVisualNovelEditor";
+            this.Text = this.projectMan.projName + "-SimpleVisualNovelEditor(LumareStudio)";
             foreach (String plot in projectMan.fileList)
             {
                 projectParentNode.Nodes.Add(plot);

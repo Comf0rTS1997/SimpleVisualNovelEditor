@@ -220,6 +220,15 @@ namespace GameLinesEditor
                 case "GOTO":
                     newNode.Add("GOTO", node.Dequeue().Trim());
                     break;
+                case "SET":
+                    newNode.Add("SET", node.Dequeue().Trim());
+                    break;
+                case "POS":
+                    newNode.Add("POS", node.Dequeue().Trim());
+                    break;
+                case "MOVE":
+                    newNode.Add("MOVE", node.Dequeue().Trim());
+                    break;
                 default:
                     Console.WriteLine("Illegal function:" + functionName);
                     break;

@@ -13,7 +13,6 @@ namespace GameLinesEditor
         public  List<String>  fileList;
         public String firstPlot;
         public Dictionary<String, String> resourceMap;
-        public String[] character;
 
         public ProjectObj(String nameIn, List<String> fileDicIn, Dictionary<string, string> resourceMapIn)
         {
